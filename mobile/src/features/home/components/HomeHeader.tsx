@@ -72,13 +72,13 @@ const SearchIcon = styled(Image)`
 `;
 
 const SearchPlaceholder = styled(AppText)`
-  margin-left: 10px;
+  margin-left: 14px;
   font-family: 'Rubik_400Regular';
   font-weight: 400;
-  font-size: 15px;
-  line-height: 18px;
+  font-size: 15.5px;
+  line-height: 15.5px;
   letter-spacing: 0.07px;
-  color: rgba(60, 60, 67, 0.6);
+  color: #afafaf;
 `;
 
 export function HomeHeader() {
