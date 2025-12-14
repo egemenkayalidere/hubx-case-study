@@ -11,7 +11,7 @@ const Wrapper = styled.View`
 
 const Title = styled(AppText)`
   width: 286px;
-  min-height: 33px;
+  height: 33px;
   font-family: 'Rubik_400Regular';
   font-size: 28px;
   line-height: 28px;
