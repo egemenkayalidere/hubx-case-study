@@ -14,7 +14,7 @@ const LegalText = styled(AppText)`
   font-size: 11px;
   line-height: 15px;
   letter-spacing: 0.07px;
-  color: ${colors.textPrimary70};
+  color: ${colors.legalText};
 `;
 
 const Underline = styled(AppText)`
@@ -23,6 +23,7 @@ const Underline = styled(AppText)`
   line-height: 15px;
   letter-spacing: 0.07px;
   text-decoration-line: underline;
+  color: ${colors.legalText};
 `;
 
 export function GetStartedLegal() {
