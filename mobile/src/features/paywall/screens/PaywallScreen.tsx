@@ -95,7 +95,7 @@ export function PaywallScreen({ navigation }: Props) {
 
   const onClose = () => {
     setHasOnboarded(true);
-    navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
+    navigation.reset({ index: 0, routes: [{ name: 'MainTabs' }] });
   };
 
   const bottomCtaBottom = insets.bottom;
