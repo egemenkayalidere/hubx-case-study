@@ -21,7 +21,7 @@ import { layout } from '@/theme/layout';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
-const Content = styled.View`
+const Content = styled.ScrollView`
   flex: 1;
   background-color: #fbfafa;
 `;
@@ -64,7 +64,13 @@ export function HomeScreen(_props: Props) {
   return (
     <Screen testID="home-screen" edges={['top']} paddingVertical={0} paddingHorizontal={0}>
       <StatusBarFill $h={insets.top} pointerEvents="none" />
-      <Content style={{ paddingBottom: layout.tabBar.baseHeight + insets.bottom }}>
+      <Content
+        contentContainerStyle={{
+          paddingBottom: layout.tabBar.baseHeight + insets.bottom,
+        }}
+        showsVerticalScrollIndicator={false}
+        nestedScrollEnabled
+      >
         <HomeHeader />
         <HomePremiumBox />
         <HomeGetStartedSection title="Get Started" items={getStartedItems} />
