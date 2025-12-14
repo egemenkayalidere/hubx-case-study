@@ -52,6 +52,19 @@ const BottomCta = styled.View<{ $bottom: number }>`
   bottom: ${({ $bottom }: { $bottom: number }) => $bottom}px;
 `;
 
+const OptionsWrapper = styled.View<{ $bottom: number }>`
+  position: absolute;
+  left: ${layout.screenPaddingHorizontal}px;
+  right: ${layout.screenPaddingHorizontal}px;
+  bottom: ${({ $bottom }: { $bottom: number }) => $bottom}px;
+`;
+
+const OptionsPlaceholder = styled.View`
+  height: 220px;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.06);
+`;
+
 export function PaywallScreen({ navigation }: Props) {
   const insets = useSafeAreaInsets();
   const setHasOnboarded = useAppStore((s) => s.setHasOnboarded);
@@ -62,6 +75,20 @@ export function PaywallScreen({ navigation }: Props) {
   };
 
   const bottomCtaBottom = insets.bottom;
+  const optionsGapFromButton = 26;
+  const ctaButtonHeight = 56;
+  const ctaButtonToDesc = 8;
+  const ctaDescHeight = 24;
+  const ctaDescToLinks = 10;
+  const ctaLinksHeight = 15;
+  const optionsBottom =
+    bottomCtaBottom +
+    ctaLinksHeight +
+    ctaDescToLinks +
+    ctaDescHeight +
+    ctaButtonToDesc +
+    ctaButtonHeight +
+    optionsGapFromButton;
 
   return (
     <Screen testID="paywall-screen" paddingHorizontal={0} paddingVertical={0} edges={['top']}>
@@ -73,6 +100,10 @@ export function PaywallScreen({ navigation }: Props) {
       <CloseButton testID="paywall-close" $top={insets.top} onPress={onClose}>
         <CloseText>×</CloseText>
       </CloseButton>
+
+      <OptionsWrapper $bottom={optionsBottom}>
+        <OptionsPlaceholder />
+      </OptionsWrapper>
 
       <BottomCta $bottom={bottomCtaBottom}>
         <Button
