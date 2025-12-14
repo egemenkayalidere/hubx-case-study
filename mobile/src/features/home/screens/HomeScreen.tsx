@@ -51,8 +51,11 @@ export function HomeScreen(_props: Props) {
   const questionsQuery = useQuestionsQuery();
 
   const getStartedItems: GetStartedItem[] =
-    questionsQuery.data?.map((q) => ({ id: String(q.id), title: q.title })) ??
-    FALLBACK_GET_STARTED_ITEMS;
+    questionsQuery.data?.map((q) => ({
+      id: String(q.id),
+      title: q.title,
+      imageUrl: q.image_uri,
+    })) ?? FALLBACK_GET_STARTED_ITEMS;
 
   const categoryItems: HomeCategoryItem[] =
     categoriesQuery.data?.map((c) => ({

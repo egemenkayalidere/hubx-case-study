@@ -1,4 +1,4 @@
-import { FlatList, Pressable, Text, View } from 'react-native';
+import { FlatList, ImageBackground, Pressable, Text, View } from 'react-native';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
@@ -8,6 +8,7 @@ export type GetStartedItem = {
   id: string;
   title: string;
   emphasizeText?: string;
+  imageUrl?: string;
 };
 
 type Props = {
@@ -43,6 +44,10 @@ const Card = styled(Pressable)`
   border-radius: 12px;
   overflow: hidden;
   background-color: #13231b;
+`;
+
+const CardImage = styled(ImageBackground)`
+  flex: 1;
 `;
 
 const CardImagePlaceholder = styled.View`
@@ -84,7 +89,11 @@ export function HomeGetStartedSection({ title, items, onPressItem }: Props) {
         ItemSeparatorComponent={() => <Spacer />}
         renderItem={({ item }: { item: GetStartedItem }) => (
           <Card onPress={() => onPressItem?.(item)}>
-            <CardImagePlaceholder />
+            {item.imageUrl ? (
+              <CardImage source={{ uri: item.imageUrl }} resizeMode="cover" />
+            ) : (
+              <CardImagePlaceholder />
+            )}
             <CardTitleSlot>
               <CardTitle>
                 {item.emphasizeText ? (
