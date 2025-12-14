@@ -57,9 +57,13 @@ export function OnboardingScreen({ navigation }: Props) {
   const slide1TitleLeft = layout.screenPaddingHorizontal;
   const slide1TitleWidth = scalePx(315, scaleW);
   const slide1TitleHeight = scalePx(66, scaleW);
-  const slide1ContentTop = scalePx(137 - layout.design.baseSafeAreaTop, mediaScale);
+  const slide1ContentTopFineTune = -24;
+  const slide1ContentTop = scalePx(
+    137 - layout.design.baseSafeAreaTop + slide1ContentTopFineTune,
+    mediaScale,
+  );
   const slide1ContentWidth = scalePx(layout.design.baseWidth, mediaScale);
-  const slide1ContentHeight = scalePx(530, mediaScale);
+  const slide1ContentHeight = scalePx(700, mediaScale);
 
   const slides = useMemo<Slide[]>(() => [{ key: '1' }, { key: '2' }], []);
 
