@@ -13,7 +13,7 @@ import { OnboardingSlide1Title } from '@/features/onboarding/components/Onboardi
 import { useResponsiveScale } from '@/hooks/useResponsiveScale';
 import type { RootStackParamList } from '@/navigation/types';
 import { layout } from '@/theme/layout';
-import { scaleFromSafeAreaTop, scalePx } from '@/utils/layout/scale';
+import { scalePx } from '@/utils/layout/scale';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Onboarding'>;
 
@@ -46,10 +46,7 @@ const BottomDots = styled.View<{ $bottom: number }>`
 
 export function OnboardingScreen({ navigation }: Props) {
   const { width } = useWindowDimensions();
-  const { deviceWidth, scaleW, scaleH } = useResponsiveScale(
-    layout.design.baseWidth,
-    layout.design.baseHeight,
-  );
+  const { scaleW, scaleH } = useResponsiveScale(layout.design.baseWidth, layout.design.baseHeight);
   const insets = useSafeAreaInsets();
 
   const mediaScale = Math.max(scaleW, scaleH);
@@ -60,12 +57,8 @@ export function OnboardingScreen({ navigation }: Props) {
   const slide1TitleLeft = layout.screenPaddingHorizontal;
   const slide1TitleWidth = scalePx(315, scaleW);
   const slide1TitleHeight = scalePx(66, scaleW);
-  const slide1ContentTop = scaleFromSafeAreaTop({
-    frameTop: 137,
-    insetsTop: insets.top,
-    baseSafeAreaTop: layout.design.baseSafeAreaTop,
-    scale: mediaScale,
-  });
+  const slide1ContentTop = scalePx(137 - layout.design.baseSafeAreaTop, mediaScale);
+  const slide1ContentWidth = scalePx(layout.design.baseWidth, mediaScale);
   const slide1ContentHeight = scalePx(530, mediaScale);
 
   const slides = useMemo<Slide[]>(() => [{ key: '1' }, { key: '2' }], []);
@@ -105,7 +98,7 @@ export function OnboardingScreen({ navigation }: Props) {
                 <OnboardingSlide1Content
                   testID="onboarding-slide-1-content"
                   top={slide1ContentTop}
-                  width={deviceWidth}
+                  width={slide1ContentWidth}
                   height={slide1ContentHeight}
                 />
               ) : null}
