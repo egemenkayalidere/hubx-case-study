@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
 
-const SAVE_BG = require('../../../../assets/paywall/Background.png');
+const SAVE_BG = require('../../../../assets/paywall/paywall-save-badge-bg.png');
 
 type PlanKey = 'month' | 'year';
 
@@ -83,9 +83,6 @@ const SavePill = styled(ImageBackground).attrs({
   source: SAVE_BG,
   resizeMode: 'stretch',
 })`
-  position: absolute;
-  top: 0.7px;
-  left: 250px;
   width: 77px;
   height: 26px;
   border-top-left-radius: 14px;
@@ -124,7 +121,7 @@ export function PaywallPlanOptions({ selected, onSelect }: Props) {
             <Title>1 Year</Title>
             <Sub>First 3 days free, then $529.99/year</Sub>
           </Texts>
-          <SavePill>
+          <SavePill style={{ alignSelf: 'center' }}>
             <SaveText>Save 50%</SaveText>
           </SavePill>
         </Option>
