@@ -9,10 +9,10 @@ import { layout } from '@/theme/layout';
 export type TabKey = 'home' | 'diagnose' | 'scan' | 'garden' | 'profile';
 
 const HOME_ICON = require('../../../assets/home/Icon.png');
-const DIAGNOSE_ICON = require('../../../assets/home/healthcare 1.png');
+const DIAGNOSE_ICON = require('../../../assets/home/diagnose.png');
 const GARDEN_ICON = require('../../../assets/home/garden-Icon.png');
 const PROFILE_ICON = require('../../../assets/home/profile-Icon.png');
-const SCAN_BUTTON = require('../../../assets/home/Scan button.png');
+const SCAN_BUTTON = require('../../../assets/home/scan-button.png');
 
 type Props = {
   activeTab: TabKey;

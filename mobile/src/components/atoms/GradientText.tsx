@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { Text } from 'react-native';
 import type { TextStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import MaskedView from '@react-native-masked-view/masked-view';
 
 type Props = {
   children: ReactNode;
@@ -11,16 +12,6 @@ type Props = {
   end?: { x: number; y: number };
 };
 
-function getMaskedView(): any | null {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const mod = require('@react-native-masked-view/masked-view');
-    return mod?.default ?? mod;
-  } catch {
-    return null;
-  }
-}
-
 export function GradientText({
   children,
   colors,
@@ -28,12 +19,6 @@ export function GradientText({
   start = { x: 0, y: 0 },
   end = { x: 1, y: 0 },
 }: Props) {
-  const MaskedView = getMaskedView();
-
-  if (!MaskedView) {
-    return <Text style={[style, { color: colors[colors.length - 1] }]}>{children}</Text>;
-  }
-
   return (
     <MaskedView
       maskElement={

@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import { GradientText } from '@/components/atoms/GradientText';
 import { layout } from '@/theme/layout';
 
-const ENVELOPE_ICON = require('../../../../assets/home/Group 9058.png');
+const ENVELOPE_ICON = require('../../../../assets/home/envelope.png');
 const ARROW_ICON = require('../../../../assets/home/arrow.png');
 
 const Wrapper = styled.View`
