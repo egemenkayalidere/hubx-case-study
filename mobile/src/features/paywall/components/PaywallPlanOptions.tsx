@@ -1,7 +1,9 @@
-import { Pressable } from 'react-native';
+import { ImageBackground, Pressable } from 'react-native';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
+
+const SAVE_BG = require('../../../../assets/paywall/Background.png');
 
 type PlanKey = 'month' | 'year';
 
@@ -77,7 +79,10 @@ const Sub = styled(AppText)`
   color: rgba(255, 255, 255, 0.72);
 `;
 
-const SavePill = styled.View`
+const SavePill = styled(ImageBackground).attrs({
+  source: SAVE_BG,
+  resizeMode: 'stretch',
+})`
   position: absolute;
   top: 0.7px;
   left: 250px;
@@ -87,7 +92,7 @@ const SavePill = styled.View`
   border-top-right-radius: 14px;
   border-bottom-right-radius: 14px;
   border-bottom-left-radius: 20px;
-  background-color: #28af6e;
+  overflow: hidden;
   align-items: center;
   justify-content: center;
 `;
