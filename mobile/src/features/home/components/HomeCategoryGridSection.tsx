@@ -17,7 +17,7 @@ type Props = {
 };
 
 const Wrapper = styled.View`
-  margin-top: ${layout.home.categoryGrid.topGapFromGetStarted}px;
+  margin-top: -10px;
   padding: 0 ${layout.screenPaddingHorizontal}px;
 `;
 
@@ -52,10 +52,10 @@ const Title = styled(AppText)`
 
 const CategoryImage = styled(Image)`
   position: absolute;
-  right: 0;
-  top: 0;
+  left: 42px;
   bottom: 0;
-  width: 76px;
+  width: 212px;
+  height: 200px;
 `;
 
 const SpacerRow = styled.View`
@@ -88,10 +88,10 @@ export function HomeCategoryGridSection({ items, onPressItem }: Props) {
                 <View
                   style={{
                     position: 'absolute',
-                    right: 0,
-                    top: 0,
+                    left: 42,
                     bottom: 0,
-                    width: 76,
+                    width: 212,
+                    height: 200,
                     backgroundColor: 'rgba(19, 35, 27, 0.06)',
                   }}
                 />
