@@ -40,11 +40,13 @@ const Title = styled(AppText)`
   position: absolute;
   left: 16px;
   top: 16px;
-  width: 92px;
+  width: 48px;
+  height: 42px;
   font-family: 'Rubik_500Medium';
   font-weight: 500;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 21px;
+  letter-spacing: -0.32px;
   color: #13231b;
 `;
 
