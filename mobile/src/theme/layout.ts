@@ -17,6 +17,11 @@ export const layout = {
       contentHeight: 700,
       contentTopFineTune: -24,
     },
+    slide2: {
+      titleLeft: 24,
+      titleWidth: 315,
+      titleHeight: 66,
+    },
   },
   getStarted: {
     headerOffsetFromSafeAreaTop: 12,
