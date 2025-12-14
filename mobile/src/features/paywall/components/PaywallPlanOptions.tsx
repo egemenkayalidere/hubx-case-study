@@ -1,5 +1,4 @@
 import { Pressable, View } from 'react-native';
-import { BlurView } from 'expo-blur';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
@@ -14,10 +13,9 @@ type Props = {
 const Container = styled.View`
   height: 136px;
   border-radius: 14px;
-  overflow: hidden;
 `;
 
-const Blur = styled(BlurView)`
+const Content = styled.View`
   flex: 1;
   padding: 10px;
 `;
@@ -31,7 +29,7 @@ const Option = styled(Pressable)<{ $active: boolean }>`
   border-width: ${({ $active }: { $active: boolean }) => ($active ? 1.5 : 1)}px;
   border-color: ${({ $active }: { $active: boolean }) =>
     $active ? '#28AF6E' : 'rgba(255,255,255,0.08)'};
-  background-color: rgba(0, 0, 0, 0.06);
+  background-color: transparent;
 `;
 
 const Divider = styled.View`
@@ -94,7 +92,7 @@ const SaveText = styled(AppText)`
 export function PaywallPlanOptions({ selected, onSelect }: Props) {
   return (
     <Container testID="paywall-plan-options">
-      <Blur intensity={80} tint="dark">
+      <Content>
         <Option $active={selected === 'month'} onPress={() => onSelect('month')}>
           <Radio $active={selected === 'month'}>{selected === 'month' ? <RadioDot /> : null}</Radio>
           <Texts>
@@ -117,7 +115,7 @@ export function PaywallPlanOptions({ selected, onSelect }: Props) {
             </SavePill>
           </View>
         </Option>
-      </Blur>
+      </Content>
     </Container>
   );
 }
