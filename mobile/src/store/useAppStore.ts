@@ -9,5 +9,3 @@ export const useAppStore = create<AppStore>((set) => ({
   hasOnboarded: false,
   setHasOnboarded: (value) => set({ hasOnboarded: value }),
 }));
-
-
