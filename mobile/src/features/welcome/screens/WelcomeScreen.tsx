@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { useAppStore } from '../../../store/useAppStore';
+import { useAppStore } from '@/store/useAppStore';
 
 export function WelcomeScreen() {
   const hasOnboarded = useAppStore((s) => s.hasOnboarded);

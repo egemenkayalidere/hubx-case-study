@@ -1,4 +1,4 @@
-import { AppRoot } from './src/app/AppRoot';
+import { AppRoot } from '@/app/AppRoot';
 
 export default function App() {
   return <AppRoot />;
