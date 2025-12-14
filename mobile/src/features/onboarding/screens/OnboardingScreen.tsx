@@ -52,18 +52,21 @@ export function OnboardingScreen({ navigation }: Props) {
   const mediaScale = Math.max(scaleW, scaleH);
 
   const buttonBottom = insets.bottom + layout.getStarted.primaryButtonBottomFromSafeAreaBottom;
-  const dotsBottom = insets.bottom + 16;
-  const slide1TitleTop = layout.getStarted.headerOffsetFromSafeAreaTop;
-  const slide1TitleLeft = layout.screenPaddingHorizontal;
-  const slide1TitleWidth = scalePx(315, scaleW);
-  const slide1TitleHeight = scalePx(66, scaleW);
-  const slide1ContentTopFineTune = -24;
+  const dotsBottom = insets.bottom + layout.onboarding.dotsBottomFromSafeAreaBottom;
+
+  const slide1TitleTop = layout.onboarding.titleOffsetFromSafeAreaTop;
+  const slide1TitleLeft = layout.onboarding.slide1.titleLeft;
+  const slide1TitleWidth = scalePx(layout.onboarding.slide1.titleWidth, scaleW);
+  const slide1TitleHeight = scalePx(layout.onboarding.slide1.titleHeight, scaleW);
+
   const slide1ContentTop = scalePx(
-    137 - layout.design.baseSafeAreaTop + slide1ContentTopFineTune,
+    layout.onboarding.slide1.contentTopFromFrame -
+      layout.design.baseSafeAreaTop +
+      layout.onboarding.slide1.contentTopFineTune,
     mediaScale,
   );
   const slide1ContentWidth = scalePx(layout.design.baseWidth, mediaScale);
-  const slide1ContentHeight = scalePx(700, mediaScale);
+  const slide1ContentHeight = scalePx(layout.onboarding.slide1.contentHeight, mediaScale);
 
   const slides = useMemo<Slide[]>(() => [{ key: '1' }, { key: '2' }], []);
 

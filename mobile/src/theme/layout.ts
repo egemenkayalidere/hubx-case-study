@@ -6,6 +6,18 @@ export const layout = {
   },
   screenPaddingHorizontal: 24,
   screenPaddingVertical: 24,
+  onboarding: {
+    titleOffsetFromSafeAreaTop: 12,
+    dotsBottomFromSafeAreaBottom: 16,
+    slide1: {
+      titleLeft: 24,
+      titleWidth: 315,
+      titleHeight: 66,
+      contentTopFromFrame: 137,
+      contentHeight: 700,
+      contentTopFineTune: -24,
+    },
+  },
   getStarted: {
     headerOffsetFromSafeAreaTop: 12,
     headerMaxWidth: 300,
