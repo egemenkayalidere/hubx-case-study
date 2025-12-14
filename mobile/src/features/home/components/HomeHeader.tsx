@@ -1,4 +1,4 @@
-import { Image, View } from 'react-native';
+import { Image, TextInput } from 'react-native';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
@@ -69,14 +69,16 @@ const SearchIcon = styled(Image)`
   height: 18px;
 `;
 
-const SearchPlaceholder = styled(AppText)`
+const SearchInput = styled(TextInput)`
+  flex: 1;
   margin-left: 14px;
   font-family: 'Rubik_400Regular';
   font-weight: 400;
   font-size: 15.5px;
   line-height: 15.5px;
   letter-spacing: 0.07px;
-  color: #afafaf;
+  color: #13231b;
+  padding: 0px;
 `;
 
 export function HomeHeader() {
@@ -113,8 +115,14 @@ export function HomeHeader() {
       <Title $top={titleTop}>Good Afternoon! ⛅️</Title>
       <Search $top={searchTop} $w={searchWidth}>
         <SearchIcon source={SEARCH_ICON} resizeMode="contain" />
-        <SearchPlaceholder>Search for plants</SearchPlaceholder>
-        <View style={{ flex: 1 }} />
+        <SearchInput
+          placeholder="Search for plants"
+          placeholderTextColor="#AFAFAF"
+          autoCorrect={false}
+          autoCapitalize="none"
+          returnKeyType="search"
+          clearButtonMode="while-editing"
+        />
       </Search>
     </Wrapper>
   );
