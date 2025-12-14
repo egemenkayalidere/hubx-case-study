@@ -1,4 +1,4 @@
-import { Pressable } from 'react-native';
+import { Image, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
@@ -6,6 +6,8 @@ import { AppText } from '@/components/atoms/Text';
 import { layout } from '@/theme/layout';
 
 export type TabKey = 'home' | 'diagnose' | 'scan' | 'garden' | 'profile';
+
+const HOME_ICON = require('../../../assets/home/Icon.png');
 
 type Props = {
   activeTab: TabKey;
@@ -36,6 +38,17 @@ const Item = styled(Pressable)<{ $active: boolean }>`
   align-items: center;
   justify-content: center;
   opacity: ${({ $active }: { $active: boolean }) => ($active ? 1 : 0.55)};
+`;
+
+const HomeItem = styled(Item)`
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 6px;
+`;
+
+const HomeIcon = styled(Image)`
+  width: ${layout.tabBar.itemIconSize}px;
+  height: ${layout.tabBar.itemIconSize}px;
 `;
 
 const IconPlaceholder = styled.View`
@@ -81,10 +94,12 @@ export function BottomTabBar({ activeTab, onPressTab }: Props) {
   return (
     <Wrapper $pb={Math.max(0, insets.bottom - 6)} testID="bottom-tab-bar">
       <Row>
-        <Item $active={activeTab === 'home'} onPress={() => onPressTab('home')}>
-          <IconPlaceholder />
-          <Label $active={activeTab === 'home'}>Home</Label>
-        </Item>
+        <HomeItem $active={activeTab === 'home'} onPress={() => onPressTab('home')}>
+          <HomeIcon source={HOME_ICON} resizeMode="contain" />
+          <Label $active={activeTab === 'home'} style={{ marginLeft: 0 }}>
+            Home
+          </Label>
+        </HomeItem>
 
         <Item $active={activeTab === 'diagnose'} onPress={() => onPressTab('diagnose')}>
           <IconPlaceholder />

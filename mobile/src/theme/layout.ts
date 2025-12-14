@@ -68,7 +68,7 @@ export const layout = {
   tabBar: {
     height: 80,
     radius: 0,
-    itemIconSize: 24,
+    itemIconSize: 25,
     fabSize: 64,
     fabBottomOffset: 18,
   },
