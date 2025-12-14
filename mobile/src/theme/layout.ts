@@ -77,4 +77,17 @@ export const layout = {
     bgColor: 'rgba(255,255,255,0.92)',
     blurIntensity: 45,
   },
+  home: {
+    header: {
+      greetingTopFromSafeAreaTop: 12,
+      greetingHeight: 19,
+      titleTopFromFrame: 79,
+      titleHeight: 28,
+      searchTopFromFrame: 117,
+      searchHeight: 44,
+      searchBorderWidth: 0.2,
+      searchBorderColor: 'rgba(60,60,67,0.25)',
+      titleColor: '#13231B',
+    },
+  },
 } as const;
