@@ -30,6 +30,8 @@ const TitleBold = styled(AppText)`
 
 const Subtitle = styled(AppText)`
   margin-top: 8px;
+  width: 300px;
+  height: 44px;
   color: ${colors.textPrimary70};
   font-size: 16px;
   line-height: 22px;
