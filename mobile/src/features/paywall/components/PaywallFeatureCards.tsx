@@ -1,8 +1,10 @@
-import { ScrollView, View } from 'react-native';
+import { Image, ScrollView, View } from 'react-native';
 import { BlurView } from 'expo-blur';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
+
+const UNLIMITED_ICON = require('../../../../assets/paywall/Icon.png');
 
 const Row = styled(ScrollView).attrs({
   horizontal: true,
@@ -38,7 +40,18 @@ const CardOverlay = styled.View`
 
 const CardContent = styled.View`
   flex: 1;
-  padding: 16px 14px;
+  padding: 16px 14px 16px 16px;
+`;
+
+const IconSlot = styled.View`
+  width: 36px;
+  height: 36px;
+`;
+
+const UnlimitedIcon = styled(Image)`
+  width: 36px;
+  height: 35.681419372558594px;
+  margin-top: 0.32px;
 `;
 
 const IconBox = styled.View`
@@ -92,9 +105,15 @@ export function PaywallFeatureCards() {
             <CardBlur intensity={16} tint="dark">
               <CardOverlay />
               <CardContent>
-                <IconBox>
-                  <IconDot />
-                </IconBox>
+                <IconSlot>
+                  {idx === 0 ? (
+                    <UnlimitedIcon source={UNLIMITED_ICON} resizeMode="contain" />
+                  ) : (
+                    <IconBox>
+                      <IconDot />
+                    </IconBox>
+                  )}
+                </IconSlot>
                 <Title>{f.title}</Title>
                 <Subtitle>{f.subtitle}</Subtitle>
               </CardContent>
