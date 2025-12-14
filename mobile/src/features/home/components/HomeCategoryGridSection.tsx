@@ -2,6 +2,7 @@ import { FlatList, Image, Pressable, View } from 'react-native';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
+import { useResponsiveScale } from '@/hooks/useResponsiveScale';
 import { layout } from '@/theme/layout';
 
 export type HomeCategoryItem = {
@@ -25,8 +26,8 @@ const Grid = styled(FlatList as unknown as new () => FlatList<HomeCategoryItem>)
   scrollEnabled: false,
 })``;
 
-const Card = styled(Pressable)`
-  width: ${layout.home.categoryGrid.cardWidth}px;
+const Card = styled(Pressable)<{ $w: number }>`
+  width: ${({ $w }: { $w: number }) => `${$w}px`};
   height: ${layout.home.categoryGrid.cardHeight}px;
   border-radius: ${layout.home.categoryGrid.cardRadius}px;
   background-color: ${layout.home.categoryGrid.cardBg};
@@ -60,6 +61,11 @@ const SpacerRow = styled.View`
 `;
 
 export function HomeCategoryGridSection({ items, onPressItem }: Props) {
+  const { deviceWidth } = useResponsiveScale(layout.design.baseWidth, layout.design.baseHeight);
+  const cardWidth = Math.floor(
+    (deviceWidth - layout.screenPaddingHorizontal * 2 - layout.home.categoryGrid.columnGap) / 2,
+  );
+
   return (
     <Wrapper testID="home-category-grid">
       <Grid
@@ -72,7 +78,7 @@ export function HomeCategoryGridSection({ items, onPressItem }: Props) {
               marginRight: index % 2 === 0 ? layout.home.categoryGrid.columnGap : 0,
             }}
           >
-            <Card onPress={() => onPressItem?.(item)}>
+            <Card $w={cardWidth} onPress={() => onPressItem?.(item)}>
               <Title>{item.title}</Title>
               {item.imageUrl ? (
                 <CategoryImage source={{ uri: item.imageUrl }} resizeMode="contain" />
