@@ -1,8 +1,10 @@
-import { Text } from 'react-native';
+import { Image, Text } from 'react-native';
 import styled from 'styled-components/native';
 
 import { GradientText } from '@/components/atoms/GradientText';
 import { layout } from '@/theme/layout';
+
+const ENVELOPE_ICON = require('../../../../assets/home/Group 9058.png');
 
 const Wrapper = styled.View`
   padding: 0 ${layout.screenPaddingHorizontal}px;
@@ -14,26 +16,37 @@ const Card = styled.View`
   height: ${layout.home.premiumBox.height}px;
   border-radius: 12px;
   background-color: #1f1f1f;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0 16px;
+  position: relative;
 `;
 
-const LeftIcon = styled.View`
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.12);
-  margin-top: 12px;
+const Envelope = styled(Image)`
+  position: absolute;
+  left: 20px;
+  top: 20.77px;
+  width: 32px;
+  height: 23.96668243408203px;
 `;
 
-const Texts = styled.View`
-  margin-left: 16px;
-  flex: 1;
-  padding-top: 13px;
+const TitleSlot = styled.View`
+  position: absolute;
+  left: 72px;
+  top: 13px;
+  width: 183px;
+  height: 21px;
+`;
+
+const SubSlot = styled.View`
+  position: absolute;
+  left: 72px;
+  top: 35px;
+  width: 228px;
+  height: 16px;
 `;
 
 const RightIcon = styled.View`
+  position: absolute;
+  right: 14px;
+  top: 21px;
   width: 22px;
   height: 22px;
   border-radius: 11px;
@@ -63,16 +76,18 @@ export function HomePremiumBox() {
   return (
     <Wrapper testID="home-premium-box">
       <Card>
-        <LeftIcon />
-        <Texts>
+        <Envelope source={ENVELOPE_ICON} resizeMode="contain" />
+        <TitleSlot>
           <GradientText colors={['#E5C990', '#E4B046']} style={titleStyle}>
             <Text style={{ fontWeight: 700 }}>FREE </Text>
             <Text style={{ fontWeight: 600 }}>Premium Available</Text>
           </GradientText>
+        </TitleSlot>
+        <SubSlot>
           <GradientText colors={['#FFDE9C', '#F5C25B']} style={subStyle}>
             Tap to upgrade your account!
           </GradientText>
-        </Texts>
+        </SubSlot>
         <RightIcon />
       </Card>
     </Wrapper>
