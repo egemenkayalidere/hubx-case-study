@@ -55,6 +55,28 @@ npm run format
 
 Onboarding tamamlandıktan sonra (Paywall close) `hasOnboarded=true` persisted olarak kaydedilir ve kullanıcı bu flow'a tekrar sokulmaz.
 
+## Screenshots
+
+> Ekran görüntülerinde iPhone 11 Pro ve iPhone 16 Pro yan yana gösterilmiştir.
+
+### Get Started
+
+![Get Started](docs/screenshots/01-get-started.png)
+
+### Onboarding
+
+![Onboarding - Slide 1](docs/screenshots/02-onboarding-1.png)
+
+![Onboarding - Slide 2](docs/screenshots/03-onboarding-2.png)
+
+### Paywall
+
+![Paywall](docs/screenshots/04-paywall.png)
+
+### Home
+
+![Home](docs/screenshots/05-home.png)
+
 ## API
 
 Kategoriler ve sorular dummy API üzerinden çekilir:
