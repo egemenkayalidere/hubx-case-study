@@ -1,6 +1,6 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import styled from 'styled-components/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import styled from 'styled-components/native';
 
 import { Button } from '@/components/atoms/Button';
 import { Screen } from '@/components/atoms/Screen';
@@ -13,8 +13,8 @@ type Props = NativeStackScreenProps<RootStackParamList, 'GetStarted'>;
 
 const Bottom = styled.View<{ $bottom: number }>`
   position: absolute;
-  width: 327px;
-  align-self: center;
+  left: ${layout.screenPaddingHorizontal}px;
+  right: ${layout.screenPaddingHorizontal}px;
   bottom: ${({ $bottom }: { $bottom: number }) => $bottom}px;
 `;
 
