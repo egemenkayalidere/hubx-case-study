@@ -12,6 +12,7 @@ import { layout } from '@/theme/layout';
 import { OnboardingBackground } from '@/features/onboarding/components/OnboardingBackground';
 import { OnboardingDots } from '@/features/onboarding/components/OnboardingDots';
 import { OnboardingSlide1Content } from '@/features/onboarding/components/OnboardingSlide1Content';
+import { OnboardingSlide1Title } from '@/features/onboarding/components/OnboardingSlide1Title';
 import type { RootStackParamList } from '@/navigation/types';
 import { scaleFromSafeAreaTop, scalePx } from '@/utils/layout/scale';
 
@@ -70,6 +71,15 @@ export function OnboardingScreen({ navigation }: Props) {
 
   const buttonBottom = insets.bottom + layout.getStarted.primaryButtonBottomFromSafeAreaBottom;
   const dotsBottom = insets.bottom + 16;
+  const slide1TitleTop = scaleFromSafeAreaTop({
+    frameTop: 59,
+    insetsTop: insets.top,
+    baseSafeAreaTop: layout.design.baseSafeAreaTop,
+    scale,
+  });
+  const slide1TitleLeft = scalePx(24, scale);
+  const slide1TitleWidth = scalePx(315, scale);
+  const slide1TitleHeight = scalePx(66, scale);
   const slide1ContentTop = scaleFromSafeAreaTop({
     frameTop: 137,
     insetsTop: insets.top,
@@ -127,6 +137,15 @@ export function OnboardingScreen({ navigation }: Props) {
                   top={slide1ContentTop}
                   width={deviceWidth}
                   height={slide1ContentHeight}
+                />
+              ) : null}
+              {item.key === '1' ? (
+                <OnboardingSlide1Title
+                  testID="onboarding-slide-1-title"
+                  top={slide1TitleTop}
+                  left={slide1TitleLeft}
+                  width={slide1TitleWidth}
+                  height={slide1TitleHeight}
                 />
               ) : null}
             </SlidePage>
