@@ -48,7 +48,7 @@ export function OnboardingSlide2Layers({
         $rotationDeg={object.rotationDeg}
       >
         <Img
-          resizeMode="contain"
+          resizeMode="cover"
           source={require('../../../../assets/onboarding/onboarding-slide-2-object.png')}
         />
       </Layer>

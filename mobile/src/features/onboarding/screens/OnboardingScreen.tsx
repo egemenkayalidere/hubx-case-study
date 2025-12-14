@@ -46,22 +46,12 @@ const BottomDots = styled.View<{ $bottom: number }>`
   align-items: center;
 `;
 
-const DebugVLine = styled.View<{ $left: number }>`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: ${({ $left }: { $left: number }) => $left}px;
-  width: 1px;
-  background-color: rgba(255, 0, 0, 0.9);
-`;
-
 export function OnboardingScreen({ navigation }: Props) {
   const { width } = useWindowDimensions();
   const { scaleW, scaleH } = useResponsiveScale(layout.design.baseWidth, layout.design.baseHeight);
   const insets = useSafeAreaInsets();
 
   const mediaScale = Math.max(scaleW, scaleH);
-  const debug = __DEV__;
 
   const buttonBottom = insets.bottom + layout.getStarted.primaryButtonBottomFromSafeAreaBottom;
   const dotsBottom = insets.bottom + layout.onboarding.dotsBottomFromSafeAreaBottom;
@@ -161,7 +151,6 @@ export function OnboardingScreen({ navigation }: Props) {
   return (
     <Screen testID="onboarding-screen" paddingHorizontal={0} paddingVertical={0} edges={['top']}>
       <OnboardingBackground slideIndex={index} />
-      {debug ? <DebugVLine pointerEvents="none" $left={layout.screenPaddingHorizontal} /> : null}
       <SlidesWrapper>
         <FlatList
           ref={listRef}
@@ -192,7 +181,6 @@ export function OnboardingScreen({ navigation }: Props) {
                   left={slide1TitleLeft}
                   width={slide1TitleWidth}
                   height={slide1TitleHeight}
-                  debug={debug}
                 />
               ) : null}
               {item.key === '2' ? (
@@ -202,7 +190,6 @@ export function OnboardingScreen({ navigation }: Props) {
                   left={slide2TitleLeft}
                   width={slide2TitleWidth}
                   height={slide2TitleHeight}
-                  debug={debug}
                 />
               ) : null}
               {item.key === '2' ? (
