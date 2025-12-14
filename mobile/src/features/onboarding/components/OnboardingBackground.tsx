@@ -14,7 +14,7 @@ export function OnboardingBackground() {
     <Bg
       testID="onboarding-background"
       resizeMode="stretch"
-      source={require('../../../../assets/onboarding/onboarding-background.png')}
+      source={require('../../../../assets/onboarding/Background.png')}
     />
   );
 }
