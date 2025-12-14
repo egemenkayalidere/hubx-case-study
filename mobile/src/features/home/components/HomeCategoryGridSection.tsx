@@ -65,12 +65,13 @@ export function HomeCategoryGridSection({ items, onPressItem }: Props) {
       <Grid
         data={items}
         keyExtractor={(it: HomeCategoryItem) => it.id}
-        columnWrapperStyle={{
-          columnGap: layout.home.categoryGrid.columnGap,
-        }}
         ItemSeparatorComponent={() => <SpacerRow />}
         renderItem={({ item, index }: { item: HomeCategoryItem; index: number }) => (
-          <View>
+          <View
+            style={{
+              marginRight: index % 2 === 0 ? layout.home.categoryGrid.columnGap : 0,
+            }}
+          >
             <Card onPress={() => onPressItem?.(item)}>
               <Title>{item.title}</Title>
               {item.imageUrl ? (
