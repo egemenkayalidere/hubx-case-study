@@ -63,7 +63,7 @@ const Search = styled.View<{ $top: number; $w: number }>`
   border-color: ${layout.home.header.searchBorderColor};
   flex-direction: row;
   align-items: center;
-  padding: 0 14px;
+  padding: 0 16px;
 `;
 
 const SearchIcon = styled(Image)`
@@ -73,9 +73,12 @@ const SearchIcon = styled(Image)`
 
 const SearchPlaceholder = styled(AppText)`
   margin-left: 10px;
+  font-family: 'Rubik_400Regular';
+  font-weight: 400;
   font-size: 15px;
   line-height: 18px;
-  color: rgba(19, 35, 27, 0.38);
+  letter-spacing: 0.07px;
+  color: rgba(60, 60, 67, 0.6);
 `;
 
 export function HomeHeader() {
