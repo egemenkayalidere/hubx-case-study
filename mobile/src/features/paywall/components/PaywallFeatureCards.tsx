@@ -20,6 +20,7 @@ const Card = styled.View`
   width: 156px;
   height: 130px;
   border-radius: 14px;
+  overflow: hidden;
 `;
 
 const CardBlur = styled(BlurView)`

@@ -13,6 +13,7 @@ type Props = {
 const Container = styled.View`
   height: 136px;
   border-radius: 14px;
+  overflow: hidden;
 `;
 
 const Content = styled.View`
