@@ -62,7 +62,7 @@ export function PaywallScreen({ navigation }: Props) {
     navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
   };
 
-  const bottomCtaBottom = insets.bottom + 12;
+  const bottomCtaBottom = insets.bottom + layout.getStarted.primaryButtonBottomFromSafeAreaBottom;
 
   return (
     <Screen testID="paywall-screen" paddingHorizontal={0} paddingVertical={0} edges={['top']}>
@@ -78,7 +78,7 @@ export function PaywallScreen({ navigation }: Props) {
         </Button>
         <AppText
           style={{
-            marginTop: 10,
+            marginTop: 8,
             fontSize: 9,
             lineHeight: 12,
             color: 'rgba(255,255,255,0.72)',
@@ -90,7 +90,7 @@ export function PaywallScreen({ navigation }: Props) {
         </AppText>
         <AppText
           style={{
-            marginTop: 8,
+            marginTop: 10,
             fontSize: 11,
             lineHeight: 15,
             color: 'rgba(255,255,255,0.72)',
