@@ -1,6 +1,7 @@
 export const layout = {
   design: {
     baseWidth: 375,
+    baseHeight: 812,
     baseSafeAreaTop: 44,
   },
   screenPaddingHorizontal: 24,

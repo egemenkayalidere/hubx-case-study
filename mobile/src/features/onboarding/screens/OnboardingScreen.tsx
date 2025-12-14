@@ -48,27 +48,27 @@ const BottomDots = styled.View<{ $bottom: number }>`
 
 export function OnboardingScreen({ navigation }: Props) {
   const { width } = useWindowDimensions();
-  const { deviceWidth, scale } = useResponsiveScale(layout.design.baseWidth);
+  const { deviceWidth, scaleW, scaleH } = useResponsiveScale(
+    layout.design.baseWidth,
+    layout.design.baseHeight,
+  );
   const insets = useSafeAreaInsets();
+
+  const mediaScale = Math.max(scaleW, scaleH);
 
   const buttonBottom = insets.bottom + layout.getStarted.primaryButtonBottomFromSafeAreaBottom;
   const dotsBottom = insets.bottom + 16;
-  const slide1TitleTop = scaleFromSafeAreaTop({
-    frameTop: 59,
-    insetsTop: insets.top,
-    baseSafeAreaTop: layout.design.baseSafeAreaTop,
-    scale,
-  });
-  const slide1TitleLeft = scalePx(24, scale);
-  const slide1TitleWidth = scalePx(315, scale);
-  const slide1TitleHeight = scalePx(66, scale);
+  const slide1TitleTop = Math.max(0, insets.top + (59 - layout.design.baseSafeAreaTop));
+  const slide1TitleLeft = layout.screenPaddingHorizontal;
+  const slide1TitleWidth = scalePx(315, scaleW);
+  const slide1TitleHeight = scalePx(66, scaleW);
   const slide1ContentTop = scaleFromSafeAreaTop({
     frameTop: 137,
     insetsTop: insets.top,
     baseSafeAreaTop: layout.design.baseSafeAreaTop,
-    scale,
+    scale: mediaScale,
   });
-  const slide1ContentHeight = scalePx(530, scale);
+  const slide1ContentHeight = scalePx(530, mediaScale);
 
   const slides = useMemo<Slide[]>(() => [{ key: '1' }, { key: '2' }], []);
 
