@@ -17,7 +17,7 @@ export function OnboardingBackground({ slideIndex }: OnboardingBackgroundProps) 
   const source =
     slideIndex === 1
       ? require('../../../../assets/onboarding/onboarding-slide-2-bg.png')
-      : require('../../../../assets/onboarding/onboarding-bg.png');
+      : require('../../../../assets/onboarding/onboarding-slide-1-bg.png');
 
   return <Bg testID="onboarding-background" resizeMode="stretch" source={source} />;
 }
