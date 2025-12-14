@@ -1,4 +1,4 @@
-import { FlatList, Pressable, View } from 'react-native';
+import { FlatList, Image, Pressable, View } from 'react-native';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
@@ -7,6 +7,7 @@ import { layout } from '@/theme/layout';
 export type HomeCategoryItem = {
   id: string;
   title: string;
+  imageUrl?: string;
 };
 
 type Props = {
@@ -46,13 +47,12 @@ const Title = styled(AppText)`
   color: #13231b;
 `;
 
-const ImagePlaceholder = styled.View`
+const CategoryImage = styled(Image)`
   position: absolute;
   right: 0;
   top: 0;
   bottom: 0;
   width: 76px;
-  background-color: rgba(19, 35, 27, 0.06);
 `;
 
 const SpacerRow = styled.View`
@@ -73,7 +73,20 @@ export function HomeCategoryGridSection({ items, onPressItem }: Props) {
           <View>
             <Card onPress={() => onPressItem?.(item)}>
               <Title>{item.title}</Title>
-              <ImagePlaceholder />
+              {item.imageUrl ? (
+                <CategoryImage source={{ uri: item.imageUrl }} resizeMode="contain" />
+              ) : (
+                <View
+                  style={{
+                    position: 'absolute',
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    width: 76,
+                    backgroundColor: 'rgba(19, 35, 27, 0.06)',
+                  }}
+                />
+              )}
             </Card>
           </View>
         )}

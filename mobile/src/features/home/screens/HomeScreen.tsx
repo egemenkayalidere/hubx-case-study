@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
+import { useCategoriesQuery, useQuestionsQuery } from '@/api/queries';
 import { Screen } from '@/components/atoms/Screen';
 import { BottomTabBar, type TabKey } from '@/components/organisms/BottomTabBar';
 import {
@@ -25,29 +26,39 @@ const Content = styled.View`
   background-color: #fbfafa;
 `;
 
-const GET_STARTED_ITEMS: GetStartedItem[] = [
-  { id: 'how-to-identify', title: 'How to identify plants easily with PlantApp?' },
-  { id: 'species', title: 'Species and are the differ' },
-];
-
-const CATEGORY_ITEMS: HomeCategoryItem[] = [
-  { id: 'edible', title: 'Edible\nPlants' },
-  { id: 'ferns', title: 'Ferns' },
-  { id: 'cacti', title: 'Cacti and\nSucculents' },
-  { id: 'palms', title: 'Palms' },
+const FALLBACK_GET_STARTED_ITEMS: GetStartedItem[] = [
+  {
+    id: 'how-to-identify',
+    title: 'How to identify plants easily with',
+    emphasizeText: 'PlantApp?',
+  },
+  { id: 'species', title: 'Differences Between Species and Varieties?' },
 ];
 
 export function HomeScreen(_props: Props) {
   const [activeTab, setActiveTab] = useState<TabKey>('home');
   const insets = useSafeAreaInsets();
+  const categoriesQuery = useCategoriesQuery();
+  const questionsQuery = useQuestionsQuery();
+
+  const getStartedItems: GetStartedItem[] =
+    questionsQuery.data?.map((q) => ({ id: String(q.id), title: q.title })) ??
+    FALLBACK_GET_STARTED_ITEMS;
+
+  const categoryItems: HomeCategoryItem[] =
+    categoriesQuery.data?.map((c) => ({
+      id: String(c.id),
+      title: c.title,
+      imageUrl: c.image?.url,
+    })) ?? [];
 
   return (
     <Screen testID="home-screen" edges={['top']} paddingVertical={0} paddingHorizontal={0}>
       <Content style={{ paddingBottom: layout.tabBar.baseHeight + insets.bottom }}>
         <HomeHeader />
         <HomePremiumBox />
-        <HomeGetStartedSection title="Get Started" items={GET_STARTED_ITEMS} />
-        <HomeCategoryGridSection items={CATEGORY_ITEMS} />
+        <HomeGetStartedSection title="Get Started" items={getStartedItems} />
+        <HomeCategoryGridSection items={categoryItems} />
       </Content>
       <BottomTabBar activeTab={activeTab} onPressTab={setActiveTab} />
     </Screen>

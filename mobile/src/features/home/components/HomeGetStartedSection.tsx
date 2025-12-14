@@ -7,6 +7,7 @@ import { layout } from '@/theme/layout';
 export type GetStartedItem = {
   id: string;
   title: string;
+  emphasizeText?: string;
 };
 
 type Props = {
@@ -86,10 +87,16 @@ export function HomeGetStartedSection({ title, items, onPressItem }: Props) {
             <CardImagePlaceholder />
             <CardTitleSlot>
               <CardTitle>
-                How to identify{' '}
-                <Text style={{ fontFamily: 'Rubik_500Medium', fontWeight: 500 }}>
-                  plants easily with PlantApp?
-                </Text>
+                {item.emphasizeText ? (
+                  <>
+                    {item.title}{' '}
+                    <Text style={{ fontFamily: 'Rubik_500Medium', fontWeight: 500 }}>
+                      {item.emphasizeText}
+                    </Text>
+                  </>
+                ) : (
+                  item.title
+                )}
               </CardTitle>
             </CardTitleSlot>
           </Card>
