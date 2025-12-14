@@ -25,6 +25,7 @@ const Content = styled.View`
 const Option = styled(Pressable)<{ $active: boolean }>`
   height: 58px;
   width: 100%;
+  position: relative;
   border-radius: 14px;
   padding: 12px 14px;
   flex-direction: row;
@@ -78,8 +79,8 @@ const Sub = styled(AppText)`
 
 const SavePill = styled.View`
   position: absolute;
-  top: 1px;
-  right: 1px;
+  top: 0.7px;
+  left: 250px;
   width: 77px;
   height: 26px;
   border-top-left-radius: 14px;
