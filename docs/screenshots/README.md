@@ -4,6 +4,7 @@ Bu klasöre çalışan uygulamanın ekran görüntülerini ekleyebiliriz.
 
 ## Önerilen isimlendirme
 
+- `00-figma-reference.png`
 - `01-get-started.png`
 - `02-onboarding-1.png`
 - `03-onboarding-2.png`

@@ -59,6 +59,10 @@ Onboarding tamamlandıktan sonra (Paywall close) `hasOnboarded=true` persisted o
 
 > Ekran görüntülerinde iPhone 11 Pro ve iPhone 16 Pro yan yana gösterilmiştir.
 
+### Figma Reference
+
+![Figma Reference](docs/screenshots/00-figma-reference.png)
+
 ### Get Started
 
 ![Get Started](docs/screenshots/01-get-started.png)
