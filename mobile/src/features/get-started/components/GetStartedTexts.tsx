@@ -10,9 +10,16 @@ const Wrapper = styled.View`
 `;
 
 const Title = styled(AppText)`
-  font-family: Rubik_300Light;
+  width: 286px;
+  min-height: 33px;
+  font-family: Rubik_400Regular;
   font-size: 28px;
   line-height: 28px;
+  letter-spacing: 0.07px;
+`;
+
+const TitleLight = styled(AppText)`
+  font-family: Rubik_300Light;
   letter-spacing: 0.07px;
 `;
 
@@ -33,7 +40,8 @@ export function GetStartedTexts() {
   return (
     <Wrapper testID="get-started-texts">
       <Title>
-        Welcome to <TitleBold>PlantApp</TitleBold>
+        <TitleLight>Welcome to </TitleLight>
+        <TitleBold>PlantApp</TitleBold>
       </Title>
       <Subtitle>{'Identify more than 3000+ plants and\n88% accuracy.'}</Subtitle>
     </Wrapper>
