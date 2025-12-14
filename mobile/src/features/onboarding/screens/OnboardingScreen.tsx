@@ -9,6 +9,7 @@ import { Screen } from '@/components/atoms/Screen';
 import { AppText } from '@/components/atoms/Text';
 import { useResponsiveScale } from '@/hooks/useResponsiveScale';
 import { layout } from '@/theme/layout';
+import { OnboardingBackground } from '@/features/onboarding/components/OnboardingBackground';
 import { OnboardingDots } from '@/features/onboarding/components/OnboardingDots';
 import { OnboardingSlide1Content } from '@/features/onboarding/components/OnboardingSlide1Content';
 import type { RootStackParamList } from '@/navigation/types';
@@ -100,6 +101,7 @@ export function OnboardingScreen({ navigation }: Props) {
 
   return (
     <Screen testID="onboarding-screen" paddingHorizontal={0} paddingVertical={0} edges={['top']}>
+      <OnboardingBackground />
       <SlidesWrapper>
         <FlatList
           ref={listRef}
