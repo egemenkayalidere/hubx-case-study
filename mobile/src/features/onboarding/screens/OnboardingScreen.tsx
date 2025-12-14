@@ -10,6 +10,7 @@ import { OnboardingBackground } from '@/features/onboarding/components/Onboardin
 import { OnboardingDots } from '@/features/onboarding/components/OnboardingDots';
 import { OnboardingSlide1Content } from '@/features/onboarding/components/OnboardingSlide1Content';
 import { OnboardingSlide1Title } from '@/features/onboarding/components/OnboardingSlide1Title';
+import { OnboardingSlide2Title } from '@/features/onboarding/components/OnboardingSlide2Title';
 import { useResponsiveScale } from '@/hooks/useResponsiveScale';
 import type { RootStackParamList } from '@/navigation/types';
 import { layout } from '@/theme/layout';
@@ -58,6 +59,11 @@ export function OnboardingScreen({ navigation }: Props) {
   const slide1TitleLeft = layout.onboarding.slide1.titleLeft;
   const slide1TitleWidth = scalePx(layout.onboarding.slide1.titleWidth, scaleW);
   const slide1TitleHeight = scalePx(layout.onboarding.slide1.titleHeight, scaleW);
+
+  const slide2TitleTop = layout.onboarding.titleOffsetFromSafeAreaTop;
+  const slide2TitleLeft = layout.onboarding.slide2.titleLeft;
+  const slide2TitleWidth = scalePx(layout.onboarding.slide2.titleWidth, scaleW);
+  const slide2TitleHeight = scalePx(layout.onboarding.slide2.titleHeight, scaleW);
 
   const slide1ContentTop = scalePx(
     layout.onboarding.slide1.contentTopFromFrame -
@@ -116,6 +122,15 @@ export function OnboardingScreen({ navigation }: Props) {
                   left={slide1TitleLeft}
                   width={slide1TitleWidth}
                   height={slide1TitleHeight}
+                />
+              ) : null}
+              {item.key === '2' ? (
+                <OnboardingSlide2Title
+                  testID="onboarding-slide-2-title"
+                  top={slide2TitleTop}
+                  left={slide2TitleLeft}
+                  width={slide2TitleWidth}
+                  height={slide2TitleHeight}
                 />
               ) : null}
             </SlidePage>
