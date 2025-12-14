@@ -1,4 +1,5 @@
 import { ScrollView, View } from 'react-native';
+import { BlurView } from 'expo-blur';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
@@ -19,6 +20,19 @@ const Card = styled.View`
   width: 156px;
   height: 130px;
   border-radius: 14px;
+`;
+
+const CardBlur = styled(BlurView)`
+  flex: 1;
+`;
+
+const CardOverlay = styled.View`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.08);
 `;
 
 const CardContent = styled.View`
@@ -74,13 +88,16 @@ export function PaywallFeatureCards() {
       {FEATURES.map((f, idx) => (
         <View key={f.title} style={{ flexDirection: 'row' }}>
           <Card>
-            <CardContent>
-              <IconBox>
-                <IconDot />
-              </IconBox>
-              <Title>{f.title}</Title>
-              <Subtitle>{f.subtitle}</Subtitle>
-            </CardContent>
+            <CardBlur intensity={16} tint="dark">
+              <CardOverlay />
+              <CardContent>
+                <IconBox>
+                  <IconDot />
+                </IconBox>
+                <Title>{f.title}</Title>
+                <Subtitle>{f.subtitle}</Subtitle>
+              </CardContent>
+            </CardBlur>
           </Card>
           {idx === FEATURES.length - 1 ? null : <Spacer />}
         </View>
