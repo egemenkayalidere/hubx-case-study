@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { RootNavigator } from '@/navigation/RootNavigator';
-import { useAppFonts } from '@/app/useAppFonts';
+import { useAppFonts } from '@/application/useAppFonts';
 
 export function AppRoot() {
   const [loaded] = useAppFonts();
