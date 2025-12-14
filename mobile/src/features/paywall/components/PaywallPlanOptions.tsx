@@ -1,9 +1,7 @@
-import { ImageBackground, Pressable } from 'react-native';
+import { Pressable } from 'react-native';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
-
-const SAVE_BG = require('../../../../assets/paywall/paywall-save-badge-bg.png');
 
 type PlanKey = 'month' | 'year';
 
@@ -83,17 +81,11 @@ const Sub = styled(AppText)`
   color: rgba(255, 255, 255, 0.72);
 `;
 
-const SavePill = styled(ImageBackground).attrs({
-  source: SAVE_BG,
-  resizeMode: 'stretch',
-})`
+const SavePill = styled.View`
   width: 77px;
   height: 26px;
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
-  border-bottom-right-radius: 14px;
-  border-bottom-left-radius: 20px;
-  overflow: hidden;
+  border-radius: 14px;
+  background-color: #28af6e;
   align-items: center;
   justify-content: center;
 `;
@@ -126,7 +118,7 @@ export function PaywallPlanOptions({ selected, onSelect }: Props) {
             <Sub>First 3 days free, then $529.99/year</Sub>
           </Texts>
           <SavePill style={{ alignSelf: 'center' }}>
-            <SaveText>Save 50%</SaveText>
+            <SaveText>50%</SaveText>
           </SavePill>
         </Option>
       </Content>
