@@ -28,6 +28,26 @@ const Envelope = styled(Image)`
   height: 32px;
 `;
 
+const Badge = styled.View`
+  position: absolute;
+  left: 44px;
+  top: 14px;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background-color: #ff3b30;
+  align-items: center;
+  justify-content: center;
+`;
+
+const BadgeText = styled(Text)`
+  font-family: System;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  color: #f5c25b;
+`;
+
 const TitleSlot = styled.View`
   position: absolute;
   left: 72px;
@@ -76,6 +96,9 @@ export function HomePremiumBox() {
     <Wrapper testID="home-premium-box">
       <Card>
         <Envelope source={ENVELOPE_ICON} resizeMode="contain" />
+        <Badge>
+          <BadgeText>1</BadgeText>
+        </Badge>
         <TitleSlot>
           <GradientText colors={['#E5C990', '#E4B046']} style={titleStyle}>
             <Text style={{ fontWeight: 700 }}>FREE </Text>
