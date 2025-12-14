@@ -44,7 +44,7 @@ export function OnboardingSlide1Content({
         resizeMode="contain"
         $width={width}
         $height={height}
-        source={require('../../../../assets/onboarding/onboarding-slide-1-content.png')}
+        source={require('../../../../assets/onboarding/Content.png')}
       />
     </Wrapper>
   );
