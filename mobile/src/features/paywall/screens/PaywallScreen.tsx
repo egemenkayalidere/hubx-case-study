@@ -1,5 +1,6 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Image, Pressable } from 'react-native';
+import { useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
@@ -12,12 +13,18 @@ import { layout } from '@/theme/layout';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Paywall'>;
 
-const PaywallHero = styled(Image)`
+const HERO_SOURCE = require('../../../../assets/paywall/paywall-hero.png');
+
+const HeroWrapper = styled.View`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 520px;
+`;
+
+const HeroImage = styled(Image)`
+  height: 100%;
 `;
 
 const BottomFill = styled.View`
@@ -67,6 +74,7 @@ const OptionsPlaceholder = styled.View`
 
 export function PaywallScreen({ navigation }: Props) {
   const insets = useSafeAreaInsets();
+  const { width: deviceWidth } = useWindowDimensions();
   const setHasOnboarded = useAppStore((s) => s.setHasOnboarded);
 
   const onClose = () => {
@@ -75,6 +83,13 @@ export function PaywallScreen({ navigation }: Props) {
   };
 
   const bottomCtaBottom = insets.bottom;
+  const heroHeight = 520;
+  const heroResolved = Image.resolveAssetSource(HERO_SOURCE);
+  const heroSrcW = heroResolved?.width ?? deviceWidth;
+  const heroSrcH = heroResolved?.height ?? heroHeight;
+  const heroScale = Math.max(deviceWidth / heroSrcW, heroHeight / heroSrcH);
+  const heroRenderedW = heroSrcW * heroScale;
+  const heroTranslateX = -Math.max(0, (heroRenderedW - deviceWidth) / 2);
   const optionsGapFromButton = 26;
   const ctaButtonHeight = 56;
   const ctaButtonToDesc = 8;
@@ -92,10 +107,16 @@ export function PaywallScreen({ navigation }: Props) {
 
   return (
     <Screen testID="paywall-screen" paddingHorizontal={0} paddingVertical={0} edges={['top']}>
-      <PaywallHero
-        resizeMode="cover"
-        source={require('../../../../assets/paywall/paywall-hero.png')}
-      />
+      <HeroWrapper>
+        <HeroImage
+          resizeMode="cover"
+          source={HERO_SOURCE}
+          style={{
+            width: heroRenderedW,
+            transform: [{ translateX: heroTranslateX }],
+          }}
+        />
+      </HeroWrapper>
       <BottomFill />
       <CloseButton testID="paywall-close" $top={insets.top} onPress={onClose}>
         <CloseText>×</CloseText>
