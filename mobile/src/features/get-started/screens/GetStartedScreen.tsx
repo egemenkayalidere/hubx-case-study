@@ -1,4 +1,5 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
@@ -33,15 +34,22 @@ const Legal = styled.View<{ $bottom: number }>`
 `;
 
 export function GetStartedScreen({ navigation }: Props) {
+  const { width: deviceWidth } = useWindowDimensions();
   const insets = useSafeAreaInsets();
+
+  const scale = deviceWidth / layout.getStarted.baseWidth;
 
   const legalBottom = insets.bottom + layout.getStarted.legalBottomFromSafeAreaBottom;
   const buttonBottom = insets.bottom + layout.getStarted.primaryButtonBottomFromSafeAreaBottom;
-  const heroTop = Math.max(0, layout.getStarted.heroTopFromFrame - insets.top);
+  const heroTop = Math.max(
+    0,
+    insets.top + (layout.getStarted.heroTopFromFrame - layout.getStarted.baseSafeAreaTop) * scale,
+  );
+  const heroHeight = layout.getStarted.heroHeight * scale;
 
   return (
     <Screen testID="get-started-screen" paddingHorizontal={0} paddingVertical={0} edges={['top']}>
-      <GetStartedHero top={heroTop} />
+      <GetStartedHero top={heroTop} width={deviceWidth} height={heroHeight} />
       <Content>
         <GetStartedTexts />
       </Content>
