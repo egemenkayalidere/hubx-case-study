@@ -1,9 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import type { GestureResponderEvent } from 'react-native';
-import { Pressable } from 'react-native';
+import { Pressable, Text as RNText } from 'react-native';
 import styled from 'styled-components/native';
-
-import { AppText } from '@/components/atoms/Text';
 
 type ButtonVariant = 'ghost' | 'primary';
 
@@ -32,9 +30,21 @@ const Root = styled(Pressable)<{ $variant: ButtonVariant; $fullWidth: boolean }>
       : `padding: 12px 16px;`}
 `;
 
-const Label = styled(AppText)<{ $variant: ButtonVariant }>`
+const Label = styled(RNText)<{ $variant: ButtonVariant }>`
   ${({ $variant }: { $variant: ButtonVariant }) =>
-    $variant === 'primary' ? `color: #ffffff; font-family: 'Rubik_600SemiBold';` : ``}
+    $variant === 'primary'
+      ? `
+    width: 85px;
+    height: 24px;
+    color: #ffffff;
+    font-family: 'SF Pro Text';
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: -0.24px;
+    text-align: center;
+  `
+      : ``}
 `;
 
 export function Button({
