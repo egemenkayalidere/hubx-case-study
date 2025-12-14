@@ -1,4 +1,4 @@
-import { Pressable, View } from 'react-native';
+import { Pressable } from 'react-native';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
@@ -74,9 +74,15 @@ const Sub = styled(AppText)`
 `;
 
 const SavePill = styled.View`
-  height: 22px;
-  padding: 0 10px;
-  border-radius: 11px;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 77px;
+  height: 26px;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+  border-bottom-left-radius: 20px;
   background-color: #28af6e;
   align-items: center;
   justify-content: center;
@@ -109,11 +115,9 @@ export function PaywallPlanOptions({ selected, onSelect }: Props) {
             <Title>1 Year</Title>
             <Sub>First 3 days free, then $529.99/year</Sub>
           </Texts>
-          <View style={{ marginLeft: 8 }}>
-            <SavePill>
-              <SaveText>Save 50%</SaveText>
-            </SavePill>
-          </View>
+          <SavePill>
+            <SaveText>Save 50%</SaveText>
+          </SavePill>
         </Option>
       </Content>
     </Container>
