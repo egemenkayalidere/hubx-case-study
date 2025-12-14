@@ -41,7 +41,7 @@ const Subtitle = styled(AppText)`
   font-size: 17px;
   line-height: 24px;
   letter-spacing: 0.38px;
-  color: rgba(255, 255, 255, 0.7);
+  color: #ffffffb2;
 `;
 
 export function PaywallHeaderTexts() {
