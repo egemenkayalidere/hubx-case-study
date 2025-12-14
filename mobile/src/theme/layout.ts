@@ -21,6 +21,8 @@ export const layout = {
       titleLeft: 24,
       titleWidth: 277,
       titleHeight: 49,
+      artworkScale: 2,
+      objectScale: 2,
       artwork: {
         width: 167.69004821777344,
         height: 185,

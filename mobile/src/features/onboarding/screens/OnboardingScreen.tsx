@@ -72,14 +72,19 @@ export function OnboardingScreen({ navigation }: Props) {
   const slide2TitleWidth = scalePx(layout.onboarding.slide2.titleWidth, scaleW);
   const slide2TitleHeight = scalePx(layout.onboarding.slide2.titleHeight, scaleW);
 
+  const slide2ArtworkBaseTop = scalePx(
+    layout.onboarding.slide2.artwork.topFromFrame - layout.design.baseSafeAreaTop,
+    mediaScale,
+  );
+  const slide2ArtworkBaseLeft = scalePx(layout.onboarding.slide2.artwork.left, mediaScale);
+  const slide2ArtworkBaseWidth = scalePx(layout.onboarding.slide2.artwork.width, mediaScale);
+  const slide2ArtworkBaseHeight = scalePx(layout.onboarding.slide2.artwork.height, mediaScale);
+  const slide2ArtworkScale = layout.onboarding.slide2.artworkScale;
   const slide2Artwork = {
-    top: scalePx(
-      layout.onboarding.slide2.artwork.topFromFrame - layout.design.baseSafeAreaTop,
-      mediaScale,
-    ),
-    left: scalePx(layout.onboarding.slide2.artwork.left, mediaScale),
-    width: scalePx(layout.onboarding.slide2.artwork.width, mediaScale),
-    height: scalePx(layout.onboarding.slide2.artwork.height, mediaScale),
+    top: slide2ArtworkBaseTop - (slide2ArtworkBaseHeight * (slide2ArtworkScale - 1)) / 2,
+    left: slide2ArtworkBaseLeft - (slide2ArtworkBaseWidth * (slide2ArtworkScale - 1)) / 2,
+    width: slide2ArtworkBaseWidth * slide2ArtworkScale,
+    height: slide2ArtworkBaseHeight * slide2ArtworkScale,
     rotationDeg: layout.onboarding.slide2.artwork.rotationDeg,
   };
   const slide2Phone = {
@@ -102,14 +107,19 @@ export function OnboardingScreen({ navigation }: Props) {
     height: scalePx(layout.onboarding.slide2.overlay.height, mediaScale),
     rotationDeg: layout.onboarding.slide2.overlay.rotationDeg,
   };
+  const slide2ObjectBaseTop = scalePx(
+    layout.onboarding.slide2.object.topFromFrame - layout.design.baseSafeAreaTop,
+    mediaScale,
+  );
+  const slide2ObjectBaseLeft = scalePx(layout.onboarding.slide2.object.left, mediaScale);
+  const slide2ObjectBaseWidth = scalePx(layout.onboarding.slide2.object.width, mediaScale);
+  const slide2ObjectBaseHeight = scalePx(layout.onboarding.slide2.object.height, mediaScale);
+  const slide2ObjectScale = layout.onboarding.slide2.objectScale;
   const slide2Object = {
-    top: scalePx(
-      layout.onboarding.slide2.object.topFromFrame - layout.design.baseSafeAreaTop,
-      mediaScale,
-    ),
-    left: scalePx(layout.onboarding.slide2.object.left, mediaScale),
-    width: scalePx(layout.onboarding.slide2.object.width, mediaScale),
-    height: scalePx(layout.onboarding.slide2.object.height, mediaScale),
+    top: slide2ObjectBaseTop - (slide2ObjectBaseHeight * (slide2ObjectScale - 1)) / 2,
+    left: slide2ObjectBaseLeft - (slide2ObjectBaseWidth * (slide2ObjectScale - 1)) / 2,
+    width: slide2ObjectBaseWidth * slide2ObjectScale,
+    height: slide2ObjectBaseHeight * slide2ObjectScale,
     rotationDeg: layout.onboarding.slide2.object.rotationDeg,
   };
 
