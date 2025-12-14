@@ -7,9 +7,12 @@ import styled from 'styled-components/native';
 import { Button } from '@/components/atoms/Button';
 import { Screen } from '@/components/atoms/Screen';
 import { AppText } from '@/components/atoms/Text';
+import { useResponsiveScale } from '@/hooks/useResponsiveScale';
 import { layout } from '@/theme/layout';
 import { OnboardingDots } from '@/features/onboarding/components/OnboardingDots';
+import { OnboardingSlide1Content } from '@/features/onboarding/components/OnboardingSlide1Content';
 import type { RootStackParamList } from '@/navigation/types';
+import { scaleFromSafeAreaTop, scalePx } from '@/utils/layout/scale';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Onboarding'>;
 
@@ -61,10 +64,18 @@ const BottomDots = styled.View<{ $bottom: number }>`
 
 export function OnboardingScreen({ navigation }: Props) {
   const { width } = useWindowDimensions();
+  const { deviceWidth, scale } = useResponsiveScale(layout.design.baseWidth);
   const insets = useSafeAreaInsets();
 
   const buttonBottom = insets.bottom + layout.getStarted.primaryButtonBottomFromSafeAreaBottom;
   const dotsBottom = insets.bottom + 16;
+  const slide1ContentTop = scaleFromSafeAreaTop({
+    frameTop: 137,
+    insetsTop: insets.top,
+    baseSafeAreaTop: layout.design.baseSafeAreaTop,
+    scale,
+  });
+  const slide1ContentHeight = scalePx(530, scale);
 
   const slides = useMemo<Slide[]>(
     () => [
@@ -108,6 +119,14 @@ export function OnboardingScreen({ navigation }: Props) {
                 <SlideTitle>{item.title}</SlideTitle>
                 <SlideBody>{item.body}</SlideBody>
               </SlideCard>
+              {item.key === '1' ? (
+                <OnboardingSlide1Content
+                  testID="onboarding-slide-1-content"
+                  top={slide1ContentTop}
+                  width={deviceWidth}
+                  height={slide1ContentHeight}
+                />
+              ) : null}
             </SlidePage>
           )}
         />
