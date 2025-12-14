@@ -9,6 +9,7 @@ export type TabKey = 'home' | 'diagnose' | 'scan' | 'garden' | 'profile';
 
 const HOME_ICON = require('../../../assets/home/Icon.png');
 const DIAGNOSE_ICON = require('../../../assets/home/healthcare 1.png');
+const GARDEN_ICON = require('../../../assets/home/garden-Icon.png');
 
 type Props = {
   activeTab: TabKey;
@@ -53,6 +54,11 @@ const HomeIcon = styled(Image)`
 `;
 
 const DiagnoseIcon = styled(Image)`
+  width: ${layout.tabBar.itemIconSize}px;
+  height: ${layout.tabBar.itemIconSize}px;
+`;
+
+const GardenIcon = styled(Image)`
   width: ${layout.tabBar.itemIconSize}px;
   height: ${layout.tabBar.itemIconSize}px;
 `;
@@ -122,7 +128,7 @@ export function BottomTabBar({ activeTab, onPressTab }: Props) {
         </FabSlot>
 
         <Item $active={activeTab === 'garden'} onPress={() => onPressTab('garden')}>
-          <IconPlaceholder />
+          <GardenIcon source={GARDEN_ICON} resizeMode="contain" />
           <Label $active={activeTab === 'garden'}>My Garden</Label>
         </Item>
 
