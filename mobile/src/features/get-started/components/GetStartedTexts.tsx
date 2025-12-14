@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
-import { layout } from '@/theme/layout';
 import { colors } from '@/theme/colors';
+import { layout } from '@/theme/layout';
 
 const Wrapper = styled.View`
   margin-top: ${layout.getStarted.headerOffsetFromSafeAreaTop}px;
