@@ -33,7 +33,7 @@ const List = styled(FlatList as unknown as new () => FlatList<GetStartedItem>).a
   horizontal: true,
   showsHorizontalScrollIndicator: false,
 })`
-  margin-top: 12px;
+  margin-top: 24px;
   height: ${layout.home.getStarted.listHeight}px;
 `;
 
