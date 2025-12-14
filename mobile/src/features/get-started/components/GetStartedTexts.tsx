@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
 import { layout } from '@/theme/layout';
+import { colors } from '@/theme/colors';
 
 const Wrapper = styled.View`
   margin-top: ${layout.getStarted.headerOffsetFromSafeAreaTop}px;
@@ -9,18 +10,23 @@ const Wrapper = styled.View`
 `;
 
 const Title = styled(AppText)`
-  /* Tipografi detaylarına sonra ineceğiz */
-  font-size: 32px;
-  font-weight: 600;
+  font-family: Rubik_300Light;
+  font-size: 28px;
+  line-height: 28px;
+  letter-spacing: 0.07px;
 `;
 
 const TitleBold = styled(AppText)`
-  font-weight: 800;
+  font-family: Rubik_600SemiBold;
+  letter-spacing: 0.07px;
 `;
 
 const Subtitle = styled(AppText)`
   margin-top: 8px;
-  color: #6b6b6b;
+  color: ${colors.textPrimary70};
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.07px;
 `;
 
 export function GetStartedTexts() {
