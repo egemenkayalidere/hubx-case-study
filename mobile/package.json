@@ -8,6 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
+    "test": "jest",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --check",
@@ -40,6 +41,9 @@
   "devDependencies": {
     "@commitlint/cli": "^20.2.0",
     "@commitlint/config-conventional": "^20.2.0",
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-native": "^13.3.3",
+    "@types/jest": "^30.0.0",
     "@types/react": "~18.3.12",
     "@types/styled-components-react-native": "^5.2.5",
     "@typescript-eslint/eslint-plugin": "^8.49.0",
@@ -50,8 +54,10 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "husky": "^8.0.3",
+    "jest-expo": "~52.0.6",
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
+    "react-test-renderer": "^18.3.1",
     "typescript": "^5.3.3"
   },
   "lint-staged": {
