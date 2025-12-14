@@ -10,6 +10,16 @@
 - TanStack Query for server-state
 - React Navigation (Native Stack)
 
+## Environment / Gereksinimler
+
+- **Node.js**: LTS (öneri: 18.x veya 20.x)
+- **npm**: Node ile gelir
+- **iOS (macOS)**: Xcode + iOS Simulator
+
+Opsiyonel:
+
+- **Watchman**: Metro file-watcher uyarılarını azaltır.
+
 ## Kurulum
 
 ```bash
@@ -22,12 +32,24 @@ npm install
 npm run ios
 ```
 
+Alternatif:
+
+```bash
+npm run start
+```
+
 ## Quality
 
 ```bash
 npm run format
 npm run lint
 npm run typecheck
+```
+
+## Test
+
+```bash
+npm test
 ```
 
 ## Mimari
@@ -50,3 +72,12 @@ src/
 - Paywall Close: `hasOnboarded=true` + `reset(MainTabs)`
 - MainTabs: Home / Diagnose / My Garden / Profile
 - Scan: orta FAB ile kamera ekranı (sadece izin + preview)
+
+## API
+
+- **Categories**: `https://dummy-api-jtg6bessta-ey.a.run.app/getCategories`
+- **Questions**: `https://dummy-api-jtg6bessta-ey.a.run.app/getQuestions`
+
+## Notlar
+
+- Bu projede ekstra bir `.env` ihtiyacı yoktur (endpoint’ler `src/api/endpoints.ts` içinde sabit).
