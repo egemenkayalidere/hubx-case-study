@@ -3,16 +3,16 @@ import styled from 'styled-components/native';
 
 import { Button } from '@/components/atoms/Button';
 import { Screen } from '@/components/atoms/Screen';
-import type { RootStackParamList } from '@/navigation/types';
 import { GetStartedTexts } from '@/features/get-started/components/GetStartedTexts';
+import type { RootStackParamList } from '@/navigation/types';
 import { layout } from '@/theme/layout';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'GetStarted'>;
 
 const Bottom = styled.View`
   position: absolute;
-  left: 0;
-  right: 0;
+  width: 327px;
+  align-self: center;
   bottom: ${layout.getStarted.primaryButtonBottomFromSafeAreaBottom}px;
 `;
 
