@@ -91,5 +91,9 @@ export const layout = {
       searchBorderColor: 'rgba(60,60,67,0.25)',
       titleColor: '#13231B',
     },
+    premiumBox: {
+      topGapFromHeader: 24,
+      height: 64,
+    },
   },
 } as const;
