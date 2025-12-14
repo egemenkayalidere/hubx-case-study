@@ -33,8 +33,6 @@ export function GetStartedScreen({ navigation }: Props) {
   const buttonBottom = insets.bottom + layout.getStarted.primaryButtonBottomFromSafeAreaBottom;
 
   return (
-    // Bottom safe-area'yı burada manuel hesaplıyoruz (absolute elemanlar için).
-    // Screen sadece top inset uygulasın.
     <Screen testID="get-started-screen" paddingVertical={0} edges={['top']}>
       <GetStartedTexts />
       <Bottom $bottom={buttonBottom}>

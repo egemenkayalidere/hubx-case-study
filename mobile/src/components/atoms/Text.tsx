@@ -13,7 +13,5 @@ const Root = styled(RNText)`
 `;
 
 export function AppText({ children, ...props }: AppTextProps) {
-  // styled(AppText) üzerinden gelen style prop'unu Root'a forward etmezsek
-  // feature seviyesinde override'lar (font-family/size vb.) uygulanmaz.
   return <Root {...props}>{children}</Root>;
 }
