@@ -81,6 +81,7 @@ export const layout = {
     header: {
       frameHeight: 175,
       greetingTopFromFrame: 56,
+      greetingGapFromSafeAreaTop: 3,
       greetingHeight: 19,
       titleTopFromFrame: 79,
       titleHeight: 28,

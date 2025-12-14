@@ -88,29 +88,36 @@ export function HomeHeader() {
     layout.design.baseHeight,
   );
 
-  const greetingTop = scaleFromSafeAreaTop({
+  const greetingTopBase = scaleFromSafeAreaTop({
     frameTop: layout.home.header.greetingTopFromFrame,
     insetsTop: insets.top,
     baseSafeAreaTop: layout.design.baseSafeAreaTop,
     scale: scaleW,
   });
 
-  const titleTop = scaleFromSafeAreaTop({
-    frameTop: layout.home.header.titleTopFromFrame,
-    insetsTop: insets.top,
-    baseSafeAreaTop: layout.design.baseSafeAreaTop,
-    scale: scaleW,
-  });
+  const desiredGreetingTop = insets.top + layout.home.header.greetingGapFromSafeAreaTop;
+  const shift = desiredGreetingTop - greetingTopBase;
 
-  const searchTop = scaleFromSafeAreaTop({
-    frameTop: layout.home.header.searchTopFromFrame,
-    insetsTop: insets.top,
-    baseSafeAreaTop: layout.design.baseSafeAreaTop,
-    scale: scaleW,
-  });
+  const greetingTop = desiredGreetingTop;
+
+  const titleTop =
+    scaleFromSafeAreaTop({
+      frameTop: layout.home.header.titleTopFromFrame,
+      insetsTop: insets.top,
+      baseSafeAreaTop: layout.design.baseSafeAreaTop,
+      scale: scaleW,
+    }) + shift;
+
+  const searchTop =
+    scaleFromSafeAreaTop({
+      frameTop: layout.home.header.searchTopFromFrame,
+      insetsTop: insets.top,
+      baseSafeAreaTop: layout.design.baseSafeAreaTop,
+      scale: scaleW,
+    }) + shift;
 
   const searchWidth = Math.max(0, deviceWidth - layout.screenPaddingHorizontal * 2);
-  const headerHeight = layout.home.header.frameHeight * scaleW;
+  const headerHeight = Math.max(0, layout.home.header.frameHeight * scaleW + shift);
 
   return (
     <Wrapper testID="home-header" $h={headerHeight}>
