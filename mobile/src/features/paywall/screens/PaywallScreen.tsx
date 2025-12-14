@@ -17,6 +17,7 @@ import { layout } from '@/theme/layout';
 type Props = NativeStackScreenProps<RootStackParamList, 'Paywall'>;
 
 const HERO_SOURCE = require('../../../../assets/paywall/paywall-hero.png');
+const CLOSE_ICON = require('../../../../assets/paywall/Close.png');
 
 const HeroWrapper = styled.View`
   position: absolute;
@@ -47,20 +48,19 @@ const BackgroundFill = styled.View`
   background-color: #0f2a21;
 `;
 
-const CloseButton = styled(Pressable)<{ $top: number }>`
+const CloseButton = styled(Pressable)<{ $top: number; $right: number; $size: number }>`
   position: absolute;
   top: ${({ $top }: { $top: number }) => $top}px;
-  right: ${layout.screenPaddingHorizontal}px;
-  width: 44px;
-  height: 44px;
+  right: ${({ $right }: { $right: number }) => $right}px;
+  width: ${({ $size }: { $size: number }) => $size}px;
+  height: ${({ $size }: { $size: number }) => $size}px;
   align-items: center;
   justify-content: center;
 `;
 
-const CloseText = styled.Text`
-  font-size: 22px;
-  line-height: 22px;
-  color: #ffffff;
+const CloseImg = styled(Image)`
+  width: 100%;
+  height: 100%;
 `;
 
 const BottomCta = styled.View<{ $bottom: number }>`
@@ -94,6 +94,10 @@ export function PaywallScreen({ navigation }: Props) {
   };
 
   const bottomCtaBottom = insets.bottom;
+  const scaleW = deviceWidth / layout.design.baseWidth;
+  const closeSize = 24 * scaleW;
+  const closeTop = insets.top + (55 - layout.design.baseSafeAreaTop) * scaleW;
+  const closeRight = 16 * scaleW;
   const heroHeight = 520;
   const heroResolved = Image.resolveAssetSource(HERO_SOURCE);
   const heroSrcW = heroResolved?.width ?? deviceWidth;
@@ -134,8 +138,14 @@ export function PaywallScreen({ navigation }: Props) {
           locations={[0, 0.55, 1]}
         />
       </HeroWrapper>
-      <CloseButton testID="paywall-close" $top={insets.top} onPress={onClose}>
-        <CloseText>×</CloseText>
+      <CloseButton
+        testID="paywall-close"
+        $top={closeTop}
+        $right={closeRight}
+        $size={closeSize}
+        onPress={onClose}
+      >
+        <CloseImg source={CLOSE_ICON} resizeMode="contain" />
       </CloseButton>
 
       <OptionsWrapper $bottom={optionsBottom}>
