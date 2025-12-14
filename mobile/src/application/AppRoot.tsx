@@ -4,11 +4,13 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { RootNavigator } from '@/navigation/RootNavigator';
 import { useAppFonts } from '@/application/useAppFonts';
+import { useAppStore } from '@/store/useAppStore';
 
 export function AppRoot() {
   const [loaded] = useAppFonts();
+  const hasHydrated = useAppStore((s) => s.hasHydrated);
 
-  if (!loaded) return null;
+  if (!loaded || !hasHydrated) return null;
 
   return (
     <SafeAreaProvider>
