@@ -6,7 +6,6 @@ import styled from 'styled-components/native';
 
 import { Button } from '@/components/atoms/Button';
 import { Screen } from '@/components/atoms/Screen';
-import { AppText } from '@/components/atoms/Text';
 import { useResponsiveScale } from '@/hooks/useResponsiveScale';
 import { layout } from '@/theme/layout';
 import { OnboardingBackground } from '@/features/onboarding/components/OnboardingBackground';
@@ -20,8 +19,6 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Onboarding'>;
 
 type Slide = {
   key: string;
-  title: string;
-  body: string;
 };
 
 const SlidesWrapper = styled.View`
@@ -32,21 +29,6 @@ const SlidePage = styled.View<{ $width: number }>`
   width: ${({ $width }: { $width: number }) => $width}px;
   padding-left: ${layout.screenPaddingHorizontal}px;
   padding-right: ${layout.screenPaddingHorizontal}px;
-`;
-
-const SlideCard = styled.View`
-  flex: 1;
-  padding-top: 64px;
-`;
-
-const SlideTitle = styled(AppText)`
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 34px;
-`;
-
-const SlideBody = styled(AppText)`
-  color: #666;
 `;
 
 const BottomButton = styled.View<{ $bottom: number }>`
@@ -88,13 +70,7 @@ export function OnboardingScreen({ navigation }: Props) {
   });
   const slide1ContentHeight = scalePx(530, scale);
 
-  const slides = useMemo<Slide[]>(
-    () => [
-      { key: '1', title: 'Onboarding 1', body: 'Placeholder slide 1' },
-      { key: '2', title: 'Onboarding 2', body: 'Placeholder slide 2' },
-    ],
-    [],
-  );
+  const slides = useMemo<Slide[]>(() => [{ key: '1' }, { key: '2' }], []);
 
   const listRef = useRef<FlatList<Slide>>(null);
   const [index, setIndex] = useState(0);
@@ -127,10 +103,6 @@ export function OnboardingScreen({ navigation }: Props) {
           }}
           renderItem={({ item }) => (
             <SlidePage $width={width}>
-              <SlideCard>
-                <SlideTitle>{item.title}</SlideTitle>
-                <SlideBody>{item.body}</SlideBody>
-              </SlideCard>
               {item.key === '1' ? (
                 <OnboardingSlide1Content
                   testID="onboarding-slide-1-content"
