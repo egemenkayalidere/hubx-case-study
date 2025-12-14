@@ -1,3 +1,6 @@
 export type RootStackParamList = {
-  Welcome: undefined;
+  GetStarted: undefined;
+  Onboarding: undefined;
+  Paywall: undefined;
+  Home: undefined;
 };
