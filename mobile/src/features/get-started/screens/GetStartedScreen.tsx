@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 
 import { Button } from '@/components/atoms/Button';
 import { Screen } from '@/components/atoms/Screen';
+import { GetStartedLegal } from '@/features/get-started/components/GetStartedLegal';
 import { GetStartedTexts } from '@/features/get-started/components/GetStartedTexts';
 import type { RootStackParamList } from '@/navigation/types';
 import { layout } from '@/theme/layout';
@@ -16,6 +17,14 @@ const Bottom = styled.View`
   bottom: ${layout.getStarted.primaryButtonBottomFromSafeAreaBottom}px;
 `;
 
+const Legal = styled.View`
+  position: absolute;
+  width: ${layout.getStarted.legalWidth}px;
+  height: ${layout.getStarted.legalHeight}px;
+  align-self: center;
+  bottom: ${layout.getStarted.legalBottomFromSafeAreaBottom}px;
+`;
+
 export function GetStartedScreen({ navigation }: Props) {
   return (
     <Screen testID="get-started-screen" paddingVertical={0}>
@@ -25,6 +34,9 @@ export function GetStartedScreen({ navigation }: Props) {
           Get Started
         </Button>
       </Bottom>
+      <Legal>
+        <GetStartedLegal />
+      </Legal>
     </Screen>
   );
 }
