@@ -1,5 +1,7 @@
+import { Text } from 'react-native';
 import styled from 'styled-components/native';
 
+import { GradientText } from '@/components/atoms/GradientText';
 import { AppText } from '@/components/atoms/Text';
 import { layout } from '@/theme/layout';
 
@@ -14,28 +16,22 @@ const Card = styled.View`
   border-radius: 12px;
   background-color: #1f1f1f;
   flex-direction: row;
-  align-items: center;
-  padding: 0 14px;
+  align-items: flex-start;
+  padding: 0 16px;
 `;
 
 const LeftIcon = styled.View`
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
   background-color: rgba(255, 255, 255, 0.12);
+  margin-top: 12px;
 `;
 
 const Texts = styled.View`
-  margin-left: 12px;
+  margin-left: 16px;
   flex: 1;
-`;
-
-const Title = styled(AppText)`
-  font-family: 'Rubik_500Medium';
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 18px;
-  color: #ffffff;
+  padding-top: 13px;
 `;
 
 const Sub = styled(AppText)`
@@ -53,12 +49,24 @@ const RightIcon = styled.View`
 `;
 
 export function HomePremiumBox() {
+  const titleStyle = {
+    width: 183,
+    height: 21,
+    fontFamily: 'System',
+    fontSize: 16,
+    lineHeight: 21,
+    letterSpacing: -0.32,
+  } as const;
+
   return (
     <Wrapper testID="home-premium-box">
       <Card>
         <LeftIcon />
         <Texts>
-          <Title>FREE Premium Available</Title>
+          <GradientText colors={['#E5C990', '#E4B046']} style={titleStyle}>
+            <Text style={{ fontWeight: 700 }}>FREE </Text>
+            <Text style={{ fontWeight: 600 }}>Premium Available</Text>
+          </GradientText>
           <Sub>Tap to upgrade your account!</Sub>
         </Texts>
         <RightIcon />
