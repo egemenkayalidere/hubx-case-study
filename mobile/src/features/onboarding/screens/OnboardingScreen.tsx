@@ -56,7 +56,12 @@ export function OnboardingScreen({ navigation }: Props) {
 
   const buttonBottom = insets.bottom + layout.getStarted.primaryButtonBottomFromSafeAreaBottom;
   const dotsBottom = insets.bottom + 16;
-  const slide1TitleTop = Math.max(0, insets.top + (59 - layout.design.baseSafeAreaTop));
+  const slide1TitleTop = scaleFromSafeAreaTop({
+    frameTop: 59,
+    insetsTop: insets.top,
+    baseSafeAreaTop: layout.design.baseSafeAreaTop,
+    scale: scaleW,
+  });
   const slide1TitleLeft = layout.screenPaddingHorizontal;
   const slide1TitleWidth = scalePx(315, scaleW);
   const slide1TitleHeight = scalePx(66, scaleW);
