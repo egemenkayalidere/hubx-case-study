@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 
 import { Screen } from '@/components/atoms/Screen';
 import { BottomTabBar, type TabKey } from '@/components/organisms/BottomTabBar';
+import { HomeHeader } from '@/features/home/components/HomeHeader';
 import type { RootStackParamList } from '@/navigation/types';
 import { layout } from '@/theme/layout';
 
@@ -21,7 +22,9 @@ export function HomeScreen(_props: Props) {
 
   return (
     <Screen testID="home-screen" edges={['top']} paddingVertical={0} paddingHorizontal={0}>
-      <Content style={{ paddingBottom: layout.tabBar.baseHeight + insets.bottom }} />
+      <Content style={{ paddingBottom: layout.tabBar.baseHeight + insets.bottom }}>
+        <HomeHeader />
+      </Content>
       <BottomTabBar activeTab={activeTab} onPressTab={setActiveTab} />
     </Screen>
   );
