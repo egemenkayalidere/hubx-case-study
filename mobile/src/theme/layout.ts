@@ -66,7 +66,7 @@ export const layout = {
     heroHeight: 499,
   },
   tabBar: {
-    height: 80,
+    baseHeight: 50,
     radius: 0,
     itemIconSize: 25,
     fabWidth: 74,
@@ -74,5 +74,7 @@ export const layout = {
     fabBorderWidth: 4,
     fabBorderColor: 'rgba(255,255,255,0.24)',
     fabBottomOffset: 18,
+    bgColor: 'rgba(255,255,255,0.92)',
+    blurIntensity: 45,
   },
 } as const;

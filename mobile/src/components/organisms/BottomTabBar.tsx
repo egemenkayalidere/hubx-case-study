@@ -1,5 +1,6 @@
 import { Image, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { BlurView } from 'expo-blur';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
@@ -18,18 +19,36 @@ type Props = {
   onPressTab: (tab: TabKey) => void;
 };
 
-const Wrapper = styled.View<{ $pb: number }>`
+const Wrapper = styled.View<{ $h: number }>`
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: ${layout.tabBar.height}px;
-  padding-bottom: ${({ $pb }: { $pb: number }) => `${$pb}px`};
-  background-color: #ffffff;
+  height: ${({ $h }: { $h: number }) => `${$h}px`};
+`;
+
+const BlurLayer = styled(BlurView).attrs({
+  intensity: layout.tabBar.blurIntensity,
+  tint: 'light',
+})`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+`;
+
+const Overlay = styled.View`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: ${layout.tabBar.bgColor};
 `;
 
 const Row = styled.View`
-  flex: 1;
+  height: ${layout.tabBar.baseHeight}px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -97,9 +116,12 @@ const FabImg = styled(Image)`
 
 export function BottomTabBar({ activeTab, onPressTab }: Props) {
   const insets = useSafeAreaInsets();
+  const height = layout.tabBar.baseHeight + insets.bottom;
 
   return (
-    <Wrapper $pb={Math.max(0, insets.bottom - 6)} testID="bottom-tab-bar">
+    <Wrapper $h={height} testID="bottom-tab-bar">
+      <BlurLayer />
+      <Overlay />
       <Row>
         <Item $active={activeTab === 'home'} onPress={() => onPressTab('home')}>
           <HomeIcon source={HOME_ICON} resizeMode="contain" />
