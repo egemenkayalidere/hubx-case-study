@@ -7,6 +7,10 @@ import { layout } from '@/theme/layout';
 const ENVELOPE_ICON = require('../../../../assets/home/envelope.png');
 const ARROW_ICON = require('../../../../assets/home/arrow.png');
 
+const ENVELOPE_SIZE = 40;
+const ARROW_SIZE = 18;
+const BADGE_SIZE = 18;
+
 const Wrapper = styled.View`
   padding: 0 ${layout.screenPaddingHorizontal}px;
   margin-top: ${layout.home.premiumBox.topGapFromHeader}px;
@@ -20,21 +24,26 @@ const Card = styled.View`
   position: relative;
 `;
 
-const Envelope = styled(Image)`
+const LeftIconSlot = styled.View`
   position: absolute;
   left: 20px;
-  top: 20.77px;
-  width: 32px;
-  height: 32px;
+  top: 50%;
+  width: ${ENVELOPE_SIZE}px;
+  height: ${ENVELOPE_SIZE}px;
+`;
+
+const Envelope = styled(Image)`
+  width: 100%;
+  height: 100%;
 `;
 
 const Badge = styled.View`
   position: absolute;
-  left: 44px;
-  top: 14px;
-  width: 16px;
-  height: 16px;
-  border-radius: 8px;
+  right: -4px;
+  top: -4px;
+  width: ${BADGE_SIZE}px;
+  height: ${BADGE_SIZE}px;
+  border-radius: ${BADGE_SIZE / 2}px;
   background-color: #ff3b30;
   align-items: center;
   justify-content: center;
@@ -43,39 +52,37 @@ const Badge = styled.View`
 const BadgeText = styled(Text)`
   font-family: System;
   font-weight: 700;
-  font-size: 10px;
-  line-height: 12px;
+  font-size: 11px;
+  line-height: 13px;
   color: #f5c25b;
 `;
 
 const TitleSlot = styled.View`
   position: absolute;
-  left: 72px;
+  left: ${20 + ENVELOPE_SIZE + 20}px;
   top: 13px;
-  width: 183px;
   height: 21px;
+  right: ${14 + ARROW_SIZE + 10}px;
 `;
 
 const SubSlot = styled.View`
   position: absolute;
-  left: 72px;
+  left: ${20 + ENVELOPE_SIZE + 20}px;
   top: 35px;
-  width: 228px;
   height: 16px;
+  right: ${14 + ARROW_SIZE + 10}px;
 `;
 
 const Arrow = styled(Image)`
   position: absolute;
   right: 14px;
-  top: 21px;
-  width: 12px;
-  height: 12px;
+  top: 50%;
+  width: ${ARROW_SIZE}px;
+  height: ${ARROW_SIZE}px;
 `;
 
 export function HomePremiumBox() {
   const titleStyle = {
-    width: 183,
-    height: 21,
     fontFamily: 'System',
     fontSize: 16,
     lineHeight: 21,
@@ -83,8 +90,6 @@ export function HomePremiumBox() {
   } as const;
 
   const subStyle = {
-    width: 228,
-    height: 16,
     fontFamily: 'System',
     fontSize: 13,
     lineHeight: 16,
@@ -95,10 +100,12 @@ export function HomePremiumBox() {
   return (
     <Wrapper testID="home-premium-box">
       <Card>
-        <Envelope source={ENVELOPE_ICON} resizeMode="contain" />
-        <Badge>
-          <BadgeText>1</BadgeText>
-        </Badge>
+        <LeftIconSlot style={{ transform: [{ translateY: -ENVELOPE_SIZE / 2 }] }}>
+          <Envelope source={ENVELOPE_ICON} resizeMode="contain" />
+          <Badge>
+            <BadgeText>1</BadgeText>
+          </Badge>
+        </LeftIconSlot>
         <TitleSlot>
           <GradientText colors={['#E5C990', '#E4B046']} style={titleStyle}>
             <Text style={{ fontWeight: 700 }}>FREE </Text>
@@ -110,7 +117,11 @@ export function HomePremiumBox() {
             Tap to upgrade your account!
           </GradientText>
         </SubSlot>
-        <Arrow source={ARROW_ICON} resizeMode="contain" />
+        <Arrow
+          source={ARROW_ICON}
+          resizeMode="contain"
+          style={{ transform: [{ translateY: -ARROW_SIZE / 2 }] }}
+        />
       </Card>
     </Wrapper>
   );
