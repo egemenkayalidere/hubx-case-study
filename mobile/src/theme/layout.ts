@@ -69,7 +69,10 @@ export const layout = {
     height: 80,
     radius: 0,
     itemIconSize: 25,
-    fabSize: 64,
+    fabWidth: 74,
+    fabHeight: 64,
+    fabBorderWidth: 4,
+    fabBorderColor: 'rgba(255,255,255,0.24)',
     fabBottomOffset: 18,
   },
 } as const;

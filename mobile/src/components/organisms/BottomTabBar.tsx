@@ -11,6 +11,7 @@ const HOME_ICON = require('../../../assets/home/Icon.png');
 const DIAGNOSE_ICON = require('../../../assets/home/healthcare 1.png');
 const GARDEN_ICON = require('../../../assets/home/garden-Icon.png');
 const PROFILE_ICON = require('../../../assets/home/profile-Icon.png');
+const SCAN_BUTTON = require('../../../assets/home/Scan button.png');
 
 type Props = {
   activeTab: TabKey;
@@ -72,26 +73,26 @@ const Label = styled(AppText)<{ $active: boolean }>`
 `;
 
 const FabSlot = styled.View`
-  width: ${layout.tabBar.fabSize}px;
+  width: ${layout.tabBar.fabWidth}px;
   height: 56px;
   align-items: center;
   justify-content: center;
 `;
 
 const Fab = styled(Pressable)`
-  width: ${layout.tabBar.fabSize}px;
-  height: ${layout.tabBar.fabSize}px;
-  border-radius: ${layout.tabBar.fabSize / 2}px;
-  background-color: #28af6e;
+  width: ${layout.tabBar.fabWidth}px;
+  height: ${layout.tabBar.fabHeight}px;
+  border-radius: ${layout.tabBar.fabHeight / 2}px;
+  border-width: ${layout.tabBar.fabBorderWidth}px;
+  border-color: ${layout.tabBar.fabBorderColor};
+  overflow: hidden;
   align-items: center;
   justify-content: center;
 `;
 
-const FabIcon = styled.View`
-  width: 26px;
-  height: 26px;
-  border-radius: 6px;
-  background-color: rgba(255, 255, 255, 0.9);
+const FabImg = styled(Image)`
+  width: ${layout.tabBar.fabWidth}px;
+  height: ${layout.tabBar.fabHeight}px;
 `;
 
 export function BottomTabBar({ activeTab, onPressTab }: Props) {
@@ -115,7 +116,7 @@ export function BottomTabBar({ activeTab, onPressTab }: Props) {
             onPress={() => onPressTab('scan')}
             style={{ marginBottom: layout.tabBar.fabBottomOffset }}
           >
-            <FabIcon />
+            <FabImg source={SCAN_BUTTON} resizeMode="contain" />
           </Fab>
         </FabSlot>
 
