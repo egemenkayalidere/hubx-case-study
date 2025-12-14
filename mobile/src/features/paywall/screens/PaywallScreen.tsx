@@ -2,11 +2,14 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Image, Pressable, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useState } from 'react';
 import styled from 'styled-components/native';
 
 import { Button } from '@/components/atoms/Button';
 import { Screen } from '@/components/atoms/Screen';
 import { AppText } from '@/components/atoms/Text';
+import { PaywallFeatureCards } from '@/features/paywall/components/PaywallFeatureCards';
+import { PaywallPlanOptions } from '@/features/paywall/components/PaywallPlanOptions';
 import type { RootStackParamList } from '@/navigation/types';
 import { useAppStore } from '@/store/useAppStore';
 import { layout } from '@/theme/layout';
@@ -69,21 +72,21 @@ const BottomCta = styled.View<{ $bottom: number }>`
 
 const OptionsWrapper = styled.View<{ $bottom: number }>`
   position: absolute;
-  left: ${layout.screenPaddingHorizontal}px;
-  right: ${layout.screenPaddingHorizontal}px;
+  left: 0;
+  right: 0;
   bottom: ${({ $bottom }: { $bottom: number }) => $bottom}px;
 `;
 
-const OptionsPlaceholder = styled.View`
-  height: 220px;
-  border-radius: 16px;
-  background-color: rgba(255, 255, 255, 0.06);
+const PlansWrapper = styled.View`
+  padding: 0 ${layout.screenPaddingHorizontal}px;
+  margin-top: 14px;
 `;
 
 export function PaywallScreen({ navigation }: Props) {
   const insets = useSafeAreaInsets();
   const { width: deviceWidth } = useWindowDimensions();
   const setHasOnboarded = useAppStore((s) => s.setHasOnboarded);
+  const [selectedPlan, setSelectedPlan] = useState<'month' | 'year'>('year');
 
   const onClose = () => {
     setHasOnboarded(true);
@@ -136,7 +139,10 @@ export function PaywallScreen({ navigation }: Props) {
       </CloseButton>
 
       <OptionsWrapper $bottom={optionsBottom}>
-        <OptionsPlaceholder />
+        <PaywallFeatureCards />
+        <PlansWrapper>
+          <PaywallPlanOptions selected={selectedPlan} onSelect={setSelectedPlan} />
+        </PlansWrapper>
       </OptionsWrapper>
 
       <BottomCta $bottom={bottomCtaBottom}>
