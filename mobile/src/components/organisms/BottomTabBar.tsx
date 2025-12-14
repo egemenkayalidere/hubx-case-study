@@ -8,6 +8,7 @@ import { layout } from '@/theme/layout';
 export type TabKey = 'home' | 'diagnose' | 'scan' | 'garden' | 'profile';
 
 const HOME_ICON = require('../../../assets/home/Icon.png');
+const DIAGNOSE_ICON = require('../../../assets/home/healthcare 1.png');
 
 type Props = {
   activeTab: TabKey;
@@ -47,6 +48,11 @@ const HomeItem = styled(Item)`
 `;
 
 const HomeIcon = styled(Image)`
+  width: ${layout.tabBar.itemIconSize}px;
+  height: ${layout.tabBar.itemIconSize}px;
+`;
+
+const DiagnoseIcon = styled(Image)`
   width: ${layout.tabBar.itemIconSize}px;
   height: ${layout.tabBar.itemIconSize}px;
 `;
@@ -102,7 +108,7 @@ export function BottomTabBar({ activeTab, onPressTab }: Props) {
         </HomeItem>
 
         <Item $active={activeTab === 'diagnose'} onPress={() => onPressTab('diagnose')}>
-          <IconPlaceholder />
+          <DiagnoseIcon source={DIAGNOSE_ICON} resizeMode="contain" />
           <Label $active={activeTab === 'diagnose'}>Diagnose</Label>
         </Item>
 
