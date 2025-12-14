@@ -167,9 +167,11 @@ export function PaywallScreen({ navigation }: Props) {
         <AppText
           style={{
             marginTop: 8,
+            width: '100%',
+            height: 24,
             fontSize: 9,
             lineHeight: 12,
-            color: 'rgba(255,255,255,0.72)',
+            color: 'rgba(255,255,255,0.52)',
             textAlign: 'center',
           }}
         >
