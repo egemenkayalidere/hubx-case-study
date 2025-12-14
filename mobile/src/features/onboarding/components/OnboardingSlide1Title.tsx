@@ -38,7 +38,10 @@ export function OnboardingSlide1Title({
 }: OnboardingSlide1TitleProps) {
   return (
     <Wrapper testID={testID} $top={top} $left={left} $width={width} $height={height}>
-      <TitleImg resizeMode="contain" source={require('../../../../assets/onboarding/Title.png')} />
+      <TitleImg
+        resizeMode="contain"
+        source={require('../../../../assets/onboarding/onboarding-slide-1-title.png')}
+      />
     </Wrapper>
   );
 }
