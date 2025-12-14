@@ -42,7 +42,7 @@ const TitlePremium = styled(AppText)`
 `;
 
 const Subtitle = styled(AppText)`
-  margin-top: 20px;
+  margin-top: 12px;
   width: 157px;
   height: 24px;
   font-family: 'Rubik_300Light';
