@@ -1,5 +1,4 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
@@ -9,8 +8,10 @@ import { GetStartedBackground } from '@/features/get-started/components/GetStart
 import { GetStartedHero } from '@/features/get-started/components/GetStartedHero';
 import { GetStartedLegal } from '@/features/get-started/components/GetStartedLegal';
 import { GetStartedTexts } from '@/features/get-started/components/GetStartedTexts';
+import { useResponsiveScale } from '@/hooks/useResponsiveScale';
 import type { RootStackParamList } from '@/navigation/types';
 import { layout } from '@/theme/layout';
+import { scaleFromSafeAreaTop, scalePx } from '@/utils/layout/scale';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'GetStarted'>;
 
@@ -35,18 +36,18 @@ const Legal = styled.View<{ $bottom: number }>`
 `;
 
 export function GetStartedScreen({ navigation }: Props) {
-  const { width: deviceWidth } = useWindowDimensions();
+  const { deviceWidth, scale } = useResponsiveScale(layout.getStarted.baseWidth);
   const insets = useSafeAreaInsets();
-
-  const scale = deviceWidth / layout.getStarted.baseWidth;
 
   const legalBottom = insets.bottom + layout.getStarted.legalBottomFromSafeAreaBottom;
   const buttonBottom = insets.bottom + layout.getStarted.primaryButtonBottomFromSafeAreaBottom;
-  const heroTop = Math.max(
-    0,
-    insets.top + (layout.getStarted.heroTopFromFrame - layout.getStarted.baseSafeAreaTop) * scale,
-  );
-  const heroHeight = layout.getStarted.heroHeight * scale;
+  const heroTop = scaleFromSafeAreaTop({
+    frameTop: layout.getStarted.heroTopFromFrame,
+    insetsTop: insets.top,
+    baseSafeAreaTop: layout.getStarted.baseSafeAreaTop,
+    scale,
+  });
+  const heroHeight = scalePx(layout.getStarted.heroHeight, scale);
 
   return (
     <Screen testID="get-started-screen" paddingHorizontal={0} paddingVertical={0} edges={['top']}>
