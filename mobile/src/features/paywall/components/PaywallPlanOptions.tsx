@@ -118,7 +118,7 @@ export function PaywallPlanOptions({ selected, onSelect }: Props) {
             <Sub>First 3 days free, then $529.99/year</Sub>
           </Texts>
           <SavePill style={{ alignSelf: 'center' }}>
-            <SaveText>50%</SaveText>
+            <SaveText>Save 50%</SaveText>
           </SavePill>
         </Option>
       </Content>
