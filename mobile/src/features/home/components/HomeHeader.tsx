@@ -1,15 +1,20 @@
 import { View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
+import { useResponsiveScale } from '@/hooks/useResponsiveScale';
 import { layout } from '@/theme/layout';
+import { scaleFromSafeAreaTop } from '@/utils/layout/scale';
 
 const Wrapper = styled.View`
-  padding: ${layout.home.header.greetingTopFromSafeAreaTop}px ${layout.screenPaddingHorizontal}px
-    0px;
+  height: ${layout.home.header.frameHeight}px;
 `;
 
-const Greeting = styled(AppText)`
+const Greeting = styled(AppText)<{ $top: number }>`
+  position: absolute;
+  left: ${layout.screenPaddingHorizontal}px;
+  top: ${({ $top }: { $top: number }) => `${$top}px`};
   width: 107px;
   height: ${layout.home.header.greetingHeight}px;
   font-family: 'Rubik_400Regular';
@@ -20,13 +25,10 @@ const Greeting = styled(AppText)`
   color: ${layout.home.header.titleColor};
 `;
 
-const TitleRow = styled.View`
-  margin-top: 4px;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const Title = styled(AppText)`
+const Title = styled(AppText)<{ $top: number }>`
+  position: absolute;
+  left: ${layout.screenPaddingHorizontal}px;
+  top: ${({ $top }: { $top: number }) => `${$top}px`};
   width: 225px;
   height: ${layout.home.header.titleHeight}px;
   font-family: 'Rubik_500Medium';
@@ -37,8 +39,11 @@ const Title = styled(AppText)`
   color: ${layout.home.header.titleColor};
 `;
 
-const Search = styled.View`
-  margin-top: 10px;
+const Search = styled.View<{ $top: number; $w: number }>`
+  position: absolute;
+  left: ${layout.screenPaddingHorizontal}px;
+  top: ${({ $top }: { $top: number }) => `${$top}px`};
+  width: ${({ $w }: { $w: number }) => `${$w}px`};
   height: ${layout.home.header.searchHeight}px;
   border-radius: 12px;
   background-color: #ffffff;
@@ -64,13 +69,40 @@ const SearchPlaceholder = styled(AppText)`
 `;
 
 export function HomeHeader() {
+  const insets = useSafeAreaInsets();
+  const { deviceWidth, scaleW } = useResponsiveScale(
+    layout.design.baseWidth,
+    layout.design.baseHeight,
+  );
+
+  const greetingTop = scaleFromSafeAreaTop({
+    frameTop: layout.home.header.greetingTopFromFrame,
+    insetsTop: insets.top,
+    baseSafeAreaTop: layout.design.baseSafeAreaTop,
+    scale: scaleW,
+  });
+
+  const titleTop = scaleFromSafeAreaTop({
+    frameTop: layout.home.header.titleTopFromFrame,
+    insetsTop: insets.top,
+    baseSafeAreaTop: layout.design.baseSafeAreaTop,
+    scale: scaleW,
+  });
+
+  const searchTop = scaleFromSafeAreaTop({
+    frameTop: layout.home.header.searchTopFromFrame,
+    insetsTop: insets.top,
+    baseSafeAreaTop: layout.design.baseSafeAreaTop,
+    scale: scaleW,
+  });
+
+  const searchWidth = Math.max(0, deviceWidth - layout.screenPaddingHorizontal * 2);
+
   return (
     <Wrapper testID="home-header">
-      <Greeting>Hi, plant lover!</Greeting>
-      <TitleRow>
-        <Title>Good Afternoon! ⛅️</Title>
-      </TitleRow>
-      <Search>
+      <Greeting $top={greetingTop}>Hi, plant lover!</Greeting>
+      <Title $top={titleTop}>Good Afternoon! ⛅️</Title>
+      <Search $top={searchTop} $w={searchWidth}>
         <SearchIcon />
         <SearchPlaceholder>Search for plants</SearchPlaceholder>
         <View style={{ flex: 1 }} />

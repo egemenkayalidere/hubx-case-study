@@ -79,7 +79,8 @@ export const layout = {
   },
   home: {
     header: {
-      greetingTopFromSafeAreaTop: 12,
+      frameHeight: 175,
+      greetingTopFromFrame: 56,
       greetingHeight: 19,
       titleTopFromFrame: 79,
       titleHeight: 28,
