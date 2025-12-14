@@ -1,4 +1,4 @@
-import { FlatList, Pressable, View } from 'react-native';
+import { FlatList, Pressable, Text, View } from 'react-native';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
@@ -49,20 +49,20 @@ const CardImagePlaceholder = styled.View`
   background-color: rgba(255, 255, 255, 0.08);
 `;
 
-const CardFooter = styled.View`
+const CardTitleSlot = styled.View`
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 12px;
-  background-color: rgba(0, 0, 0, 0.35);
+  left: 14px;
+  top: 111px;
+  width: 200px;
+  height: 40px;
 `;
 
-const CardTitle = styled(AppText)`
-  font-family: 'Rubik_600SemiBold';
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 18px;
+const CardTitle = styled(Text)`
+  font-family: 'Rubik_400Regular';
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
   color: #ffffff;
 `;
 
@@ -84,9 +84,14 @@ export function HomeGetStartedSection({ title, items, onPressItem }: Props) {
         renderItem={({ item }: { item: GetStartedItem }) => (
           <Card onPress={() => onPressItem?.(item)}>
             <CardImagePlaceholder />
-            <CardFooter>
-              <CardTitle>{item.title}</CardTitle>
-            </CardFooter>
+            <CardTitleSlot>
+              <CardTitle>
+                How to identify{' '}
+                <Text style={{ fontFamily: 'Rubik_500Medium', fontWeight: 500 }}>
+                  plants easily with PlantApp?
+                </Text>
+              </CardTitle>
+            </CardTitleSlot>
           </Card>
         )}
         ListFooterComponent={() => <View style={{ width: layout.screenPaddingHorizontal }} />}
