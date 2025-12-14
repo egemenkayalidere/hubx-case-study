@@ -95,5 +95,9 @@ export const layout = {
       topGapFromHeader: 24,
       height: 64,
     },
+    getStarted: {
+      topGapFromPremiumBox: 24,
+      listHeight: 200,
+    },
   },
 } as const;
