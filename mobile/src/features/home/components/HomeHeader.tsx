@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { Image, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
@@ -7,8 +7,20 @@ import { useResponsiveScale } from '@/hooks/useResponsiveScale';
 import { layout } from '@/theme/layout';
 import { scaleFromSafeAreaTop } from '@/utils/layout/scale';
 
-const Wrapper = styled.View`
-  height: ${layout.home.header.frameHeight}px;
+const HEADER_BG = require('../../../../assets/home/header-Background.png');
+const SEARCH_ICON = require('../../../../assets/home/search-Icon.png');
+
+const Wrapper = styled.View<{ $h: number }>`
+  position: relative;
+  height: ${({ $h }: { $h: number }) => `${$h}px`};
+`;
+
+const HeaderBg = styled(Image)<{ $w: number; $h: number }>`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: ${({ $w }: { $w: number }) => `${$w}px`};
+  height: ${({ $h }: { $h: number }) => `${$h}px`};
 `;
 
 const Greeting = styled(AppText)<{ $top: number }>`
@@ -54,11 +66,9 @@ const Search = styled.View<{ $top: number; $w: number }>`
   padding: 0 14px;
 `;
 
-const SearchIcon = styled.View`
+const SearchIcon = styled(Image)`
   width: 18px;
   height: 18px;
-  border-radius: 9px;
-  background-color: rgba(19, 35, 27, 0.18);
 `;
 
 const SearchPlaceholder = styled(AppText)`
@@ -97,13 +107,21 @@ export function HomeHeader() {
   });
 
   const searchWidth = Math.max(0, deviceWidth - layout.screenPaddingHorizontal * 2);
+  const headerHeight = layout.home.header.frameHeight * scaleW;
 
   return (
-    <Wrapper testID="home-header">
+    <Wrapper testID="home-header" $h={headerHeight}>
+      <HeaderBg
+        source={HEADER_BG}
+        resizeMode="stretch"
+        $w={deviceWidth}
+        $h={headerHeight}
+        pointerEvents="none"
+      />
       <Greeting $top={greetingTop}>Hi, plant lover!</Greeting>
       <Title $top={titleTop}>Good Afternoon! ⛅️</Title>
       <Search $top={searchTop} $w={searchWidth}>
-        <SearchIcon />
+        <SearchIcon source={SEARCH_ICON} resizeMode="contain" />
         <SearchPlaceholder>Search for plants</SearchPlaceholder>
         <View style={{ flex: 1 }} />
       </Search>
