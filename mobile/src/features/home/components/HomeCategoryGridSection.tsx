@@ -40,22 +40,23 @@ const Title = styled(AppText)`
   position: absolute;
   left: 16px;
   top: 16px;
-  width: 48px;
-  height: 42px;
+  width: 110px;
   font-family: 'Rubik_500Medium';
   font-weight: 500;
   font-size: 16px;
   line-height: 21px;
   letter-spacing: -0.32px;
   color: #13231b;
+  z-index: 2;
 `;
 
 const CategoryImage = styled(Image)`
   position: absolute;
-  left: 42px;
+  left: 10px;
   bottom: 0;
-  width: 212px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 `;
 
 const SpacerRow = styled.View`
@@ -81,18 +82,19 @@ export function HomeCategoryGridSection({ items, onPressItem }: Props) {
             }}
           >
             <Card $w={cardWidth} onPress={() => onPressItem?.(item)}>
-              <Title>{item.title}</Title>
+              <Title numberOfLines={2}>{item.title}</Title>
               {item.imageUrl ? (
                 <CategoryImage source={{ uri: item.imageUrl }} resizeMode="contain" />
               ) : (
                 <View
                   style={{
                     position: 'absolute',
-                    left: 42,
+                    left: 10,
                     bottom: 0,
-                    width: 212,
-                    height: 200,
+                    width: '100%',
+                    height: '100%',
                     backgroundColor: 'rgba(19, 35, 27, 0.06)',
+                    zIndex: 1,
                   }}
                 />
               )}
