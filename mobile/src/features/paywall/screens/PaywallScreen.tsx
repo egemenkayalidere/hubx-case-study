@@ -1,24 +1,23 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Pressable } from 'react-native';
+import { Image, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
 import { Button } from '@/components/atoms/Button';
-import { AppText } from '@/components/atoms/Text';
 import { Screen } from '@/components/atoms/Screen';
+import { AppText } from '@/components/atoms/Text';
 import type { RootStackParamList } from '@/navigation/types';
-import { layout } from '@/theme/layout';
 import { useAppStore } from '@/store/useAppStore';
+import { layout } from '@/theme/layout';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Paywall'>;
 
-const TopImagePlaceholder = styled.View`
+const PaywallHero = styled(Image)`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 520px;
-  background-color: #0c1913;
 `;
 
 const BottomFill = styled.View`
@@ -62,11 +61,14 @@ export function PaywallScreen({ navigation }: Props) {
     navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
   };
 
-  const bottomCtaBottom = insets.bottom + layout.getStarted.primaryButtonBottomFromSafeAreaBottom;
+  const bottomCtaBottom = insets.bottom;
 
   return (
     <Screen testID="paywall-screen" paddingHorizontal={0} paddingVertical={0} edges={['top']}>
-      <TopImagePlaceholder />
+      <PaywallHero
+        resizeMode="cover"
+        source={require('../../../../assets/paywall/paywall-hero.png')}
+      />
       <BottomFill />
       <CloseButton testID="paywall-close" $top={insets.top} onPress={onClose}>
         <CloseText>×</CloseText>
