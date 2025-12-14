@@ -1,7 +1,7 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Image, Pressable } from 'react-native';
-import { useWindowDimensions } from 'react-native';
+import { Image, Pressable, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { LinearGradient } from 'expo-linear-gradient';
 import styled from 'styled-components/native';
 
 import { Button } from '@/components/atoms/Button';
@@ -25,6 +25,14 @@ const HeroWrapper = styled.View`
 
 const HeroImage = styled(Image)`
   height: 100%;
+`;
+
+const HeroFade = styled(LinearGradient)`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 220px;
 `;
 
 const BottomFill = styled.View`
@@ -115,6 +123,11 @@ export function PaywallScreen({ navigation }: Props) {
             width: heroRenderedW,
             transform: [{ translateX: heroTranslateX }],
           }}
+        />
+        <HeroFade
+          pointerEvents="none"
+          colors={['rgba(15,42,33,0)', 'rgba(15,42,33,1)']}
+          locations={[0, 1]}
         />
       </HeroWrapper>
       <BottomFill />
