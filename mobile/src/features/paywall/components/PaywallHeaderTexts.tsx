@@ -16,19 +16,27 @@ const TitleRow = styled.View`
 
 const TitlePlantApp = styled(AppText)`
   font-family: 'Rubik_700Bold';
-  font-weight: 800;
   font-size: 30px;
   line-height: 30px;
   text-transform: capitalize;
   color: #ffffff;
 `;
 
-const TitlePremium = styled(AppText)`
-  margin-left: 6px;
+const TitleSpace = styled(AppText)`
   font-family: 'Rubik_700Bold';
   font-weight: 700;
   font-size: 24px;
   line-height: 24px;
+  letter-spacing: 0px;
+  color: #ffffff;
+`;
+
+const TitlePremium = styled(AppText)`
+  font-family: 'Rubik_300Light';
+  font-weight: 300;
+  font-size: 27px;
+  line-height: 27px;
+  letter-spacing: 0px;
   text-transform: capitalize;
   color: #ffffff;
 `;
@@ -49,6 +57,7 @@ export function PaywallHeaderTexts() {
     <Wrapper>
       <TitleRow>
         <TitlePlantApp>PlantApp</TitlePlantApp>
+        <TitleSpace> </TitleSpace>
         <TitlePremium>Premium</TitlePremium>
       </TitleRow>
       <Subtitle>Access All Features</Subtitle>

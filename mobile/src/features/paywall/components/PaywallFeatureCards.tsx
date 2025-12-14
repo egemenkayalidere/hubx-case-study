@@ -3,6 +3,7 @@ import { BlurView } from 'expo-blur';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
+import paywallData from '@/data/paywall.json';
 
 const UNLIMITED_ICON = require('../../../../assets/paywall/Icon.png');
 
@@ -85,22 +86,13 @@ const Subtitle = styled(AppText)`
   color: rgba(255, 255, 255, 0.72);
 `;
 
-type Feature = {
-  title: string;
-  subtitle: string;
-};
-
-const FEATURES: Feature[] = [
-  { title: 'Unlimited', subtitle: 'Plant Identify' },
-  { title: 'Faster', subtitle: 'Process' },
-  { title: 'Detailed', subtitle: 'Plant care' },
-];
-
 export function PaywallFeatureCards() {
+  const features = paywallData.features;
+
   return (
     <Row testID="paywall-feature-cards">
-      {FEATURES.map((f, idx) => (
-        <View key={f.title} style={{ flexDirection: 'row' }}>
+      {features.map((f, idx) => (
+        <View key={f.key} style={{ flexDirection: 'row' }}>
           <Card>
             <CardBlur intensity={16} tint="dark">
               <CardOverlay />
@@ -119,7 +111,7 @@ export function PaywallFeatureCards() {
               </CardContent>
             </CardBlur>
           </Card>
-          {idx === FEATURES.length - 1 ? null : <Spacer />}
+          {idx === features.length - 1 ? null : <Spacer />}
         </View>
       ))}
     </Row>

@@ -2,6 +2,7 @@ import { Pressable } from 'react-native';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
+import paywallData from '@/data/paywall.json';
 
 type PlanKey = 'month' | 'year';
 
@@ -98,14 +99,17 @@ const SaveText = styled(AppText)`
 `;
 
 export function PaywallPlanOptions({ selected, onSelect }: Props) {
+  const month = paywallData.plans.month;
+  const year = paywallData.plans.year;
+
   return (
     <Container testID="paywall-plan-options">
       <Content>
         <Option $active={selected === 'month'} onPress={() => onSelect('month')}>
           <Radio $active={selected === 'month'}>{selected === 'month' ? <RadioDot /> : null}</Radio>
           <Texts>
-            <Title>1 Month</Title>
-            <Sub>$2.99/month, auto renewable</Sub>
+            <Title>{month.title}</Title>
+            <Sub>{month.subtitle}</Sub>
           </Texts>
         </Option>
 
@@ -114,11 +118,11 @@ export function PaywallPlanOptions({ selected, onSelect }: Props) {
         <Option $active={selected === 'year'} onPress={() => onSelect('year')}>
           <Radio $active={selected === 'year'}>{selected === 'year' ? <RadioDot /> : null}</Radio>
           <Texts>
-            <Title>1 Year</Title>
-            <Sub>First 3 days free, then $529.99/year</Sub>
+            <Title>{year.title}</Title>
+            <Sub>{year.subtitle}</Sub>
           </Texts>
           <SavePill style={{ alignSelf: 'center' }}>
-            <SaveText>Save 50%</SaveText>
+            <SaveText>{year.badge}</SaveText>
           </SavePill>
         </Option>
       </Content>

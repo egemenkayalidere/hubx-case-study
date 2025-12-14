@@ -1,0 +1,15 @@
+{
+  "features": [
+    { "key": "unlimited", "title": "Unlimited", "subtitle": "Plant Identify" },
+    { "key": "faster", "title": "Faster", "subtitle": "Process" },
+    { "key": "detailed", "title": "Detailed", "subtitle": "Plant care" }
+  ],
+  "plans": {
+    "month": { "title": "1 Month", "subtitle": "$2.99/month, auto renewable" },
+    "year": {
+      "title": "1 Year",
+      "subtitle": "First 3 days free, then $529.99/year",
+      "badge": "Save 50%"
+    }
+  }
+}
