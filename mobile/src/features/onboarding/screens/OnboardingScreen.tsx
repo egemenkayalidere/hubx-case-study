@@ -111,17 +111,16 @@ export function OnboardingScreen({ navigation }: Props) {
     layout.onboarding.slide2.object.topFromFrame - layout.design.baseSafeAreaTop,
     mediaScale,
   );
+  const slide2ObjectBaseLeft = scalePx(layout.onboarding.slide2.object.left, mediaScale);
   const slide2ObjectBaseWidth = scalePx(layout.onboarding.slide2.object.width, mediaScale);
   const slide2ObjectBaseHeight = scalePx(layout.onboarding.slide2.object.height, mediaScale);
-  const slide2ObjectRatio = slide2ObjectBaseHeight / (slide2ObjectBaseWidth || 1);
-  const slide2ObjectInset = layout.screenPaddingHorizontal;
-  const slide2ObjectWidth = Math.max(0, width - slide2ObjectInset * 2);
+  const slide2ObjectScale = layout.onboarding.slide2.objectScale;
   const slide2Object = {
-    top: slide2ObjectBaseTop,
-    left: slide2ObjectInset,
-    width: slide2ObjectWidth,
-    height: slide2ObjectWidth * slide2ObjectRatio,
-    rotationDeg: 0,
+    top: slide2ObjectBaseTop - (slide2ObjectBaseHeight * (slide2ObjectScale - 1)) / 2,
+    left: slide2ObjectBaseLeft - (slide2ObjectBaseWidth * (slide2ObjectScale - 1)) / 2,
+    width: slide2ObjectBaseWidth * slide2ObjectScale,
+    height: slide2ObjectBaseHeight * slide2ObjectScale,
+    rotationDeg: layout.onboarding.slide2.object.rotationDeg,
   };
 
   const slide1ContentTop = scalePx(
