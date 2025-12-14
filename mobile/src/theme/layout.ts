@@ -9,5 +9,8 @@ export const layout = {
     legalWidth: 232,
     legalHeight: 30,
     buttonToLegalGap: 17,
+    heroTopFromFrame: 168,
+    heroWidth: 375,
+    heroHeight: 499,
   },
 } as const;
