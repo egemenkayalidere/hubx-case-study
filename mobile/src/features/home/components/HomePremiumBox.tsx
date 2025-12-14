@@ -2,7 +2,6 @@ import { Text } from 'react-native';
 import styled from 'styled-components/native';
 
 import { GradientText } from '@/components/atoms/GradientText';
-import { AppText } from '@/components/atoms/Text';
 import { layout } from '@/theme/layout';
 
 const Wrapper = styled.View`
@@ -34,13 +33,6 @@ const Texts = styled.View`
   padding-top: 13px;
 `;
 
-const Sub = styled(AppText)`
-  margin-top: 2px;
-  font-size: 12px;
-  line-height: 14px;
-  color: rgba(255, 255, 255, 0.72);
-`;
-
 const RightIcon = styled.View`
   width: 22px;
   height: 22px;
@@ -58,6 +50,16 @@ export function HomePremiumBox() {
     letterSpacing: -0.32,
   } as const;
 
+  const subStyle = {
+    width: 228,
+    height: 16,
+    fontFamily: 'System',
+    fontSize: 13,
+    lineHeight: 16,
+    letterSpacing: 0,
+    fontWeight: 400 as const,
+  } as const;
+
   return (
     <Wrapper testID="home-premium-box">
       <Card>
@@ -67,7 +69,9 @@ export function HomePremiumBox() {
             <Text style={{ fontWeight: 700 }}>FREE </Text>
             <Text style={{ fontWeight: 600 }}>Premium Available</Text>
           </GradientText>
-          <Sub>Tap to upgrade your account!</Sub>
+          <GradientText colors={['#FFDE9C', '#F5C25B']} style={subStyle}>
+            Tap to upgrade your account!
+          </GradientText>
         </Texts>
         <RightIcon />
       </Card>
