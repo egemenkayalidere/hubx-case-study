@@ -44,22 +44,27 @@ const SlideBody = styled(AppText)`
   color: #666;
 `;
 
-const BottomArea = styled.View<{ $pb: number }>`
+const BottomButton = styled.View<{ $bottom: number }>`
   position: absolute;
   left: ${layout.screenPaddingHorizontal}px;
   right: ${layout.screenPaddingHorizontal}px;
-  bottom: 0;
-  padding-bottom: ${({ $pb }: { $pb: number }) => $pb}px;
+  bottom: ${({ $bottom }: { $bottom: number }) => $bottom}px;
 `;
 
-const DotsWrapper = styled.View`
+const BottomDots = styled.View<{ $bottom: number }>`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: ${({ $bottom }: { $bottom: number }) => $bottom}px;
   align-items: center;
-  margin-top: 16px;
 `;
 
 export function OnboardingScreen({ navigation }: Props) {
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
+
+  const buttonBottom = insets.bottom + layout.getStarted.primaryButtonBottomFromSafeAreaBottom;
+  const dotsBottom = insets.bottom + 16;
 
   const slides = useMemo<Slide[]>(
     () => [
@@ -108,14 +113,15 @@ export function OnboardingScreen({ navigation }: Props) {
         />
       </SlidesWrapper>
 
-      <BottomArea $pb={insets.bottom + 16}>
+      <BottomButton $bottom={buttonBottom}>
         <Button variant="primary" fullWidth onPress={goNext}>
           Continue
         </Button>
-        <DotsWrapper>
-          <OnboardingDots testID="onboarding-dots" count={3} activeIndex={index} />
-        </DotsWrapper>
-      </BottomArea>
+      </BottomButton>
+
+      <BottomDots $bottom={dotsBottom}>
+        <OnboardingDots testID="onboarding-dots" count={3} activeIndex={index} />
+      </BottomDots>
     </Screen>
   );
 }

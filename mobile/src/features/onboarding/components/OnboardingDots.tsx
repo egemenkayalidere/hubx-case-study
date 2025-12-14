@@ -8,13 +8,14 @@ const Row = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  height: 10px;
 `;
 
 const Dot = styled.View<DotProps>`
-  width: 6px;
-  height: 6px;
-  border-radius: 3px;
-  background-color: ${({ $active }: { $active: boolean }) => ($active ? '#13231B' : '#C9D1CC')};
+  width: ${({ $active }: { $active: boolean }) => ($active ? 10 : 6)}px;
+  height: ${({ $active }: { $active: boolean }) => ($active ? 10 : 6)}px;
+  border-radius: ${({ $active }: { $active: boolean }) => ($active ? 5 : 3)}px;
+  background-color: ${({ $active }: { $active: boolean }) => ($active ? '#13231B' : '#13231B40')};
 `;
 
 const Spacer = styled.View`
