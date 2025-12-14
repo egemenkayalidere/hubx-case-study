@@ -62,9 +62,9 @@ export function OnboardingScreen({ navigation }: Props) {
   const slide1TitleHeight = scalePx(layout.onboarding.slide1.titleHeight, scaleW);
 
   const slide2TitleTop = layout.onboarding.titleOffsetFromSafeAreaTop;
-  const slide2TitleLeft = layout.onboarding.slide2.titleLeft;
-  const slide2TitleWidth = scalePx(layout.onboarding.slide2.titleWidth, scaleW);
-  const slide2TitleHeight = scalePx(layout.onboarding.slide2.titleHeight, scaleW);
+  const slide2TitleLeft = layout.screenPaddingHorizontal;
+  const slide2TitleWidth = scalePx(layout.onboarding.slide2.titleWidth, mediaScale);
+  const slide2TitleHeight = scalePx(layout.onboarding.slide2.titleHeight, mediaScale);
 
   const slide2Artwork = {
     top: scalePx(
