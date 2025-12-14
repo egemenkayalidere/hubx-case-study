@@ -1,0 +1,13 @@
+{
+  // Bu tsconfig root'ta sadece IDE (Cursor/VSCode) import resolution için var.
+  // Asıl typecheck / build mobile/tsconfig.json üzerinden çalışıyor.
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["mobile/src/*"]
+    }
+  },
+  "include": ["mobile/**/*.ts", "mobile/**/*.tsx"]
+}
+
+
