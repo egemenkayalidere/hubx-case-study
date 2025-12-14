@@ -5,6 +5,7 @@ import {
   Rubik_400Regular,
   Rubik_500Medium,
   Rubik_600SemiBold,
+  Rubik_700Bold,
 } from '@expo-google-fonts/rubik';
 
 export function useAppFonts() {
@@ -13,5 +14,6 @@ export function useAppFonts() {
     Rubik_400Regular,
     Rubik_500Medium,
     Rubik_600SemiBold,
+    Rubik_700Bold,
   });
 }
