@@ -1,0 +1,11 @@
+import { useFonts } from 'expo-font';
+
+import { Rubik_300Light, Rubik_400Regular, Rubik_600SemiBold } from '@expo-google-fonts/rubik';
+
+export function useAppFonts() {
+  return useFonts({
+    Rubik_300Light,
+    Rubik_400Regular,
+    Rubik_600SemiBold,
+  });
+}
