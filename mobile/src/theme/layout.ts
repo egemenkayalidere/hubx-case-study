@@ -7,7 +7,7 @@ export const layout = {
   screenPaddingHorizontal: 24,
   screenPaddingVertical: 24,
   onboarding: {
-    titleOffsetFromSafeAreaTop: 12,
+    titleTopFromFrame: 59,
     dotsBottomFromSafeAreaBottom: 16,
     slide1: {
       titleLeft: 24,
