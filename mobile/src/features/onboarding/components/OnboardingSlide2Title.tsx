@@ -1,11 +1,14 @@
 import { Image } from 'react-native';
 import styled from 'styled-components/native';
 
+const TITLE_SOURCE = require('../../../../assets/onboarding/onboarding-slide-2-title.png');
+
 type WrapperProps = {
   $top: number;
   $left: number;
   $width: number;
   $height: number;
+  $debug: boolean;
 };
 
 const Wrapper = styled.View<WrapperProps>`
@@ -14,6 +17,8 @@ const Wrapper = styled.View<WrapperProps>`
   left: ${({ $left }: { $left: number }) => $left}px;
   width: ${({ $width }: { $width: number }) => $width}px;
   height: ${({ $height }: { $height: number }) => $height}px;
+  border-width: ${({ $debug }: { $debug: boolean }) => ($debug ? 1 : 0)}px;
+  border-color: rgba(255, 0, 0, 0.9);
 `;
 
 const TitleImg = styled(Image)`
@@ -27,6 +32,7 @@ type OnboardingSlide2TitleProps = {
   width: number;
   height: number;
   testID?: string;
+  debug?: boolean;
 };
 
 export function OnboardingSlide2Title({
@@ -35,12 +41,21 @@ export function OnboardingSlide2Title({
   width,
   height,
   testID,
+  debug = false,
 }: OnboardingSlide2TitleProps) {
+  const resolved = Image.resolveAssetSource(TITLE_SOURCE);
+  const srcW = resolved?.width ?? width;
+  const srcH = resolved?.height ?? height;
+  const scale = Math.min(width / srcW, height / srcH);
+  const renderedW = srcW * scale;
+  const translateX = -Math.max(0, (width - renderedW) / 2);
+
   return (
-    <Wrapper testID={testID} $top={top} $left={left} $width={width} $height={height}>
+    <Wrapper testID={testID} $top={top} $left={left} $width={width} $height={height} $debug={debug}>
       <TitleImg
         resizeMode="contain"
-        source={require('../../../../assets/onboarding/onboarding-slide-2-title.png')}
+        source={TITLE_SOURCE}
+        style={{ transform: [{ translateX }] }}
       />
     </Wrapper>
   );
