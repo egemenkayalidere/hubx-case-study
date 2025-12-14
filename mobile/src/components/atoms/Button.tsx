@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import type { GestureResponderEvent } from 'react-native';
+import type { GestureResponderEvent, TextStyle } from 'react-native';
 import { Pressable } from 'react-native';
 import styled from 'styled-components/native';
 
@@ -12,6 +12,7 @@ type ButtonProps = PropsWithChildren<{
   testID?: string;
   variant?: ButtonVariant;
   fullWidth?: boolean;
+  labelStyle?: TextStyle;
 }>;
 
 const Root = styled(Pressable)<{ $variant: ButtonVariant; $fullWidth: boolean }>`
@@ -55,10 +56,13 @@ export function Button({
   testID,
   variant = 'ghost',
   fullWidth = false,
+  labelStyle,
 }: ButtonProps) {
   return (
     <Root onPress={onPress} testID={testID} $variant={variant} $fullWidth={fullWidth}>
-      <Label $variant={variant}>{children}</Label>
+      <Label $variant={variant} style={labelStyle}>
+        {children}
+      </Label>
     </Root>
   );
 }

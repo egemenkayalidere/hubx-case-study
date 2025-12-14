@@ -75,7 +75,22 @@ export function PaywallScreen({ navigation }: Props) {
       </CloseButton>
 
       <BottomCta $bottom={bottomCtaBottom}>
-        <Button variant="primary" fullWidth onPress={onClose}>
+        <Button
+          variant="primary"
+          fullWidth
+          onPress={onClose}
+          labelStyle={{
+            width: 135,
+            height: 24,
+            fontFamily: 'Rubik_500Medium',
+            fontWeight: '500',
+            fontSize: 16,
+            lineHeight: 24,
+            letterSpacing: -0.24,
+            textAlign: 'center',
+            color: '#FFFFFF',
+          }}
+        >
           Try free for 3 days
         </Button>
         <AppText
