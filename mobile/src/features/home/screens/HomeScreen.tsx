@@ -13,7 +13,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const Content = styled.View`
   flex: 1;
-  background-color: #ffffff;
+  background-color: #fbfafa;
 `;
 
 export function HomeScreen(_props: Props) {
