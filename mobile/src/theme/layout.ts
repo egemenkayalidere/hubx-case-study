@@ -7,7 +7,7 @@ export const layout = {
   screenPaddingHorizontal: 24,
   screenPaddingVertical: 24,
   getStarted: {
-    headerOffsetFromSafeAreaTop: 15,
+    headerOffsetFromSafeAreaTop: 12,
     headerMaxWidth: 300,
     primaryButtonBottomFromSafeAreaBottom: 55,
     legalBottomFromSafeAreaBottom: 8,
