@@ -9,6 +9,7 @@ import { Button } from '@/components/atoms/Button';
 import { Screen } from '@/components/atoms/Screen';
 import { AppText } from '@/components/atoms/Text';
 import { PaywallFeatureCards } from '@/features/paywall/components/PaywallFeatureCards';
+import { PaywallHeaderTexts } from '@/features/paywall/components/PaywallHeaderTexts';
 import { PaywallPlanOptions } from '@/features/paywall/components/PaywallPlanOptions';
 import type { RootStackParamList } from '@/navigation/types';
 import { useAppStore } from '@/store/useAppStore';
@@ -82,6 +83,10 @@ const PlansWrapper = styled.View`
   margin-top: 14px;
 `;
 
+const HeaderWrapper = styled.View`
+  margin-bottom: 18px;
+`;
+
 export function PaywallScreen({ navigation }: Props) {
   const insets = useSafeAreaInsets();
   const { width: deviceWidth } = useWindowDimensions();
@@ -149,6 +154,9 @@ export function PaywallScreen({ navigation }: Props) {
       </CloseButton>
 
       <OptionsWrapper $bottom={optionsBottom}>
+        <HeaderWrapper>
+          <PaywallHeaderTexts />
+        </HeaderWrapper>
         <PaywallFeatureCards />
         <PlansWrapper>
           <PaywallPlanOptions selected={selectedPlan} onSelect={setSelectedPlan} />
