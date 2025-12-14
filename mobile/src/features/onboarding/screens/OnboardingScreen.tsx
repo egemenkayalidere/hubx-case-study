@@ -1,12 +1,14 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useMemo, useRef, useState } from 'react';
 import { FlatList, useWindowDimensions } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
 import { Button } from '@/components/atoms/Button';
 import { Screen } from '@/components/atoms/Screen';
 import { AppText } from '@/components/atoms/Text';
-import { ScreenHeader } from '@/components/molecules/ScreenHeader';
+import { layout } from '@/theme/layout';
+import { OnboardingDots } from '@/features/onboarding/components/OnboardingDots';
 import type { RootStackParamList } from '@/navigation/types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Onboarding'>;
@@ -23,32 +25,42 @@ const SlidesWrapper = styled.View`
 
 const SlidePage = styled.View<{ $width: number }>`
   width: ${({ $width }: { $width: number }) => $width}px;
+  padding-left: ${layout.screenPaddingHorizontal}px;
+  padding-right: ${layout.screenPaddingHorizontal}px;
 `;
 
 const SlideCard = styled.View`
   flex: 1;
-  padding: 16px;
-  justify-content: center;
+  padding-top: 64px;
 `;
 
 const SlideTitle = styled(AppText)`
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 700;
-  margin-bottom: 8px;
+  line-height: 34px;
 `;
 
 const SlideBody = styled(AppText)`
   color: #666;
 `;
 
-const Footer = styled.View`
+const BottomArea = styled.View<{ $pb: number }>`
+  position: absolute;
+  left: ${layout.screenPaddingHorizontal}px;
+  right: ${layout.screenPaddingHorizontal}px;
+  bottom: 0;
+  padding-bottom: ${({ $pb }: { $pb: number }) => $pb}px;
+`;
+
+const DotsWrapper = styled.View`
+  align-items: center;
   margin-top: 16px;
-  flex-direction: row;
-  gap: 12px;
 `;
 
 export function OnboardingScreen({ navigation }: Props) {
   const { width } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
+
   const slides = useMemo<Slide[]>(
     () => [
       { key: '1', title: 'Onboarding 1', body: 'Placeholder slide 1' },
@@ -61,8 +73,8 @@ export function OnboardingScreen({ navigation }: Props) {
   const [index, setIndex] = useState(0);
 
   const goNext = () => {
-    const next = Math.min(index + 1, slides.length - 1);
-    if (next === index) {
+    const next = index + 1;
+    if (next >= slides.length) {
       navigation.navigate('Paywall');
       return;
     }
@@ -70,12 +82,8 @@ export function OnboardingScreen({ navigation }: Props) {
     setIndex(next);
   };
 
-  const skip = () => navigation.navigate('Paywall');
-
   return (
-    <Screen testID="onboarding-screen">
-      <ScreenHeader title="Onboarding" subtitle="2 slide (horizontal) - placeholder" />
-
+    <Screen testID="onboarding-screen" paddingHorizontal={0} paddingVertical={0} edges={['top']}>
       <SlidesWrapper>
         <FlatList
           ref={listRef}
@@ -90,7 +98,7 @@ export function OnboardingScreen({ navigation }: Props) {
             setIndex(newIndex);
           }}
           renderItem={({ item }) => (
-            <SlidePage $width={width - 48}>
+            <SlidePage $width={width}>
               <SlideCard>
                 <SlideTitle>{item.title}</SlideTitle>
                 <SlideBody>{item.body}</SlideBody>
@@ -100,10 +108,14 @@ export function OnboardingScreen({ navigation }: Props) {
         />
       </SlidesWrapper>
 
-      <Footer>
-        <Button onPress={skip}>Skip</Button>
-        <Button onPress={goNext}>{index === slides.length - 1 ? 'Continue' : 'Next'}</Button>
-      </Footer>
+      <BottomArea $pb={insets.bottom + 16}>
+        <Button variant="primary" fullWidth onPress={goNext}>
+          Continue
+        </Button>
+        <DotsWrapper>
+          <OnboardingDots testID="onboarding-dots" count={3} activeIndex={index} />
+        </DotsWrapper>
+      </BottomArea>
     </Screen>
   );
 }
