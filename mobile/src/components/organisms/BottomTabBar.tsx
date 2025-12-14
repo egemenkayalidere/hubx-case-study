@@ -10,6 +10,7 @@ export type TabKey = 'home' | 'diagnose' | 'scan' | 'garden' | 'profile';
 const HOME_ICON = require('../../../assets/home/Icon.png');
 const DIAGNOSE_ICON = require('../../../assets/home/healthcare 1.png');
 const GARDEN_ICON = require('../../../assets/home/garden-Icon.png');
+const PROFILE_ICON = require('../../../assets/home/profile-Icon.png');
 
 type Props = {
   activeTab: TabKey;
@@ -31,21 +32,16 @@ const Row = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 ${layout.screenPaddingHorizontal}px;
+  padding: 0px;
 `;
 
 const Item = styled(Pressable)<{ $active: boolean }>`
   width: 64px;
   height: 56px;
   align-items: center;
-  justify-content: center;
-  opacity: ${({ $active }: { $active: boolean }) => ($active ? 1 : 0.55)};
-`;
-
-const HomeItem = styled(Item)`
-  align-items: flex-start;
   justify-content: flex-start;
   padding-top: 6px;
+  opacity: ${({ $active }: { $active: boolean }) => ($active ? 1 : 0.55)};
 `;
 
 const HomeIcon = styled(Image)`
@@ -63,11 +59,9 @@ const GardenIcon = styled(Image)`
   height: ${layout.tabBar.itemIconSize}px;
 `;
 
-const IconPlaceholder = styled.View`
+const ProfileIcon = styled(Image)`
   width: ${layout.tabBar.itemIconSize}px;
   height: ${layout.tabBar.itemIconSize}px;
-  border-radius: 12px;
-  background-color: rgba(40, 175, 110, 0.2);
 `;
 
 const Label = styled(AppText)<{ $active: boolean }>`
@@ -106,12 +100,10 @@ export function BottomTabBar({ activeTab, onPressTab }: Props) {
   return (
     <Wrapper $pb={Math.max(0, insets.bottom - 6)} testID="bottom-tab-bar">
       <Row>
-        <HomeItem $active={activeTab === 'home'} onPress={() => onPressTab('home')}>
+        <Item $active={activeTab === 'home'} onPress={() => onPressTab('home')}>
           <HomeIcon source={HOME_ICON} resizeMode="contain" />
-          <Label $active={activeTab === 'home'} style={{ marginLeft: 0 }}>
-            Home
-          </Label>
-        </HomeItem>
+          <Label $active={activeTab === 'home'}>Home</Label>
+        </Item>
 
         <Item $active={activeTab === 'diagnose'} onPress={() => onPressTab('diagnose')}>
           <DiagnoseIcon source={DIAGNOSE_ICON} resizeMode="contain" />
@@ -133,7 +125,7 @@ export function BottomTabBar({ activeTab, onPressTab }: Props) {
         </Item>
 
         <Item $active={activeTab === 'profile'} onPress={() => onPressTab('profile')}>
-          <IconPlaceholder />
+          <ProfileIcon source={PROFILE_ICON} resizeMode="contain" />
           <Label $active={activeTab === 'profile'}>Profile</Label>
         </Item>
       </Row>
