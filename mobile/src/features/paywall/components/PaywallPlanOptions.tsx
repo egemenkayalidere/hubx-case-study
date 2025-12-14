@@ -12,6 +12,7 @@ type Props = {
 
 const Container = styled.View`
   height: 136px;
+  width: 100%;
   border-radius: 14px;
   overflow: hidden;
 `;
@@ -23,6 +24,7 @@ const Content = styled.View`
 
 const Option = styled(Pressable)<{ $active: boolean }>`
   height: 58px;
+  width: 100%;
   border-radius: 14px;
   padding: 12px 14px;
   flex-direction: row;
