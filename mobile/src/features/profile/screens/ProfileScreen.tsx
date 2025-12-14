@@ -1,10 +1,5 @@
-import { Screen } from '@/components/atoms/Screen';
-import { ScreenHeader } from '@/components/molecules/ScreenHeader';
+import { PlaceholderScreen } from '@/components/templates/PlaceholderScreen';
 
 export function ProfileScreen() {
-  return (
-    <Screen testID="profile-screen">
-      <ScreenHeader title="Profile" subtitle="Placeholder ekran" />
-    </Screen>
-  );
+  return <PlaceholderScreen testID="profile-screen" title="Profile" />;
 }

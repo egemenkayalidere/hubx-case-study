@@ -23,32 +23,21 @@ export function RootNavigator() {
         headerShown: false,
       }}
     >
-      {hasOnboarded ? (
-        <>
-          <Stack.Screen name="MainTabs" component={MainTabsScreen} />
-          <Stack.Screen name="QuestionDetail" component={QuestionDetailScreen} />
-          <Stack.Screen name="CategoryDetail" component={CategoryDetailScreen} />
-          <Stack.Screen
-            name="Scan"
-            component={ScanScreen}
-            options={{ presentation: 'fullScreenModal' }}
-          />
-        </>
-      ) : (
+      {hasOnboarded ? null : (
         <>
           <Stack.Screen name="GetStarted" component={GetStartedScreen} />
           <Stack.Screen name="Onboarding" component={OnboardingScreen} />
           <Stack.Screen name="Paywall" component={PaywallScreen} />
-          <Stack.Screen name="MainTabs" component={MainTabsScreen} />
-          <Stack.Screen name="QuestionDetail" component={QuestionDetailScreen} />
-          <Stack.Screen name="CategoryDetail" component={CategoryDetailScreen} />
-          <Stack.Screen
-            name="Scan"
-            component={ScanScreen}
-            options={{ presentation: 'fullScreenModal' }}
-          />
         </>
       )}
+      <Stack.Screen name="MainTabs" component={MainTabsScreen} />
+      <Stack.Screen name="QuestionDetail" component={QuestionDetailScreen} />
+      <Stack.Screen name="CategoryDetail" component={CategoryDetailScreen} />
+      <Stack.Screen
+        name="Scan"
+        component={ScanScreen}
+        options={{ presentation: 'fullScreenModal' }}
+      />
     </Stack.Navigator>
   );
 }
