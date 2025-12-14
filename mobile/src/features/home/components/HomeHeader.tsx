@@ -1,11 +1,9 @@
 import { Image, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
 import { AppText } from '@/components/atoms/Text';
 import { useResponsiveScale } from '@/hooks/useResponsiveScale';
 import { layout } from '@/theme/layout';
-import { scaleFromSafeAreaTop } from '@/utils/layout/scale';
 
 const HEADER_BG = require('../../../../assets/home/header-Background.png');
 const SEARCH_ICON = require('../../../../assets/home/search-Icon.png');
@@ -82,42 +80,25 @@ const SearchPlaceholder = styled(AppText)`
 `;
 
 export function HomeHeader() {
-  const insets = useSafeAreaInsets();
   const { deviceWidth, scaleW } = useResponsiveScale(
     layout.design.baseWidth,
     layout.design.baseHeight,
   );
 
-  const greetingTopBase = scaleFromSafeAreaTop({
-    frameTop: layout.home.header.greetingTopFromFrame,
-    insetsTop: insets.top,
-    baseSafeAreaTop: layout.design.baseSafeAreaTop,
-    scale: scaleW,
-  });
-
-  const desiredGreetingTop = insets.top + layout.home.header.greetingGapFromSafeAreaTop;
-  const shift = desiredGreetingTop - greetingTopBase;
-
-  const greetingTop = desiredGreetingTop;
+  const greetingTop = 3 * scaleW;
 
   const titleTop =
-    scaleFromSafeAreaTop({
-      frameTop: layout.home.header.titleTopFromFrame,
-      insetsTop: insets.top,
-      baseSafeAreaTop: layout.design.baseSafeAreaTop,
-      scale: scaleW,
-    }) + shift;
+    greetingTop +
+    (layout.home.header.titleTopFromFrame - layout.home.header.greetingTopFromFrame) * scaleW;
 
   const searchTop =
-    scaleFromSafeAreaTop({
-      frameTop: layout.home.header.searchTopFromFrame,
-      insetsTop: insets.top,
-      baseSafeAreaTop: layout.design.baseSafeAreaTop,
-      scale: scaleW,
-    }) + shift;
+    greetingTop +
+    (layout.home.header.searchTopFromFrame - layout.home.header.greetingTopFromFrame) * scaleW;
 
   const searchWidth = Math.max(0, deviceWidth - layout.screenPaddingHorizontal * 2);
-  const headerHeight = Math.max(0, layout.home.header.frameHeight * scaleW + shift);
+  const headerHeight =
+    greetingTop +
+    (layout.home.header.frameHeight - layout.home.header.greetingTopFromFrame) * scaleW;
 
   return (
     <Wrapper testID="home-header" $h={headerHeight}>
