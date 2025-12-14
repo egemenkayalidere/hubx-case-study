@@ -65,4 +65,11 @@ export const layout = {
     heroWidth: 375,
     heroHeight: 499,
   },
+  tabBar: {
+    height: 80,
+    radius: 0,
+    itemIconSize: 24,
+    fabSize: 64,
+    fabBottomOffset: 18,
+  },
 } as const;
