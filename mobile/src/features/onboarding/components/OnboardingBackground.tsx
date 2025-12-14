@@ -9,12 +9,15 @@ const Bg = styled(Image)`
   left: 0;
 `;
 
-export function OnboardingBackground() {
-  return (
-    <Bg
-      testID="onboarding-background"
-      resizeMode="stretch"
-      source={require('../../../../assets/onboarding/onboarding-bg.png')}
-    />
-  );
+type OnboardingBackgroundProps = {
+  slideIndex: number;
+};
+
+export function OnboardingBackground({ slideIndex }: OnboardingBackgroundProps) {
+  const source =
+    slideIndex === 1
+      ? require('../../../../assets/onboarding/onboarding-slide-2-bg.png')
+      : require('../../../../assets/onboarding/onboarding-bg.png');
+
+  return <Bg testID="onboarding-background" resizeMode="stretch" source={source} />;
 }

@@ -91,7 +91,7 @@ export function OnboardingScreen({ navigation }: Props) {
 
   return (
     <Screen testID="onboarding-screen" paddingHorizontal={0} paddingVertical={0} edges={['top']}>
-      <OnboardingBackground />
+      <OnboardingBackground slideIndex={index} />
       <SlidesWrapper>
         <FlatList
           ref={listRef}
