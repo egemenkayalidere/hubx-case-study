@@ -12,19 +12,19 @@ const Wrapper = styled.View`
 const Title = styled(AppText)`
   width: 286px;
   min-height: 33px;
-  font-family: Rubik_400Regular;
+  font-family: 'Rubik_400Regular';
   font-size: 28px;
   line-height: 28px;
   letter-spacing: 0.07px;
 `;
 
 const TitleLight = styled(AppText)`
-  font-family: Rubik_300Light;
+  font-family: 'Rubik_300Light';
   letter-spacing: 0.07px;
 `;
 
 const TitleBold = styled(AppText)`
-  font-family: Rubik_600SemiBold;
+  font-family: 'Rubik_600SemiBold';
   letter-spacing: 0.07px;
 `;
 
