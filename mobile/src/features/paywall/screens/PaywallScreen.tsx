@@ -1,7 +1,7 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Image, Pressable, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
 import styled from 'styled-components/native';
 
 import { Button } from '@/components/atoms/Button';
@@ -32,15 +32,15 @@ const HeroFade = styled(LinearGradient)`
   left: 0;
   right: 0;
   bottom: 0;
-  height: 220px;
+  height: 260px;
 `;
 
-const BottomFill = styled.View`
+const BackgroundFill = styled.View`
   position: absolute;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 520px;
   background-color: #0f2a21;
 `;
 
@@ -115,6 +115,7 @@ export function PaywallScreen({ navigation }: Props) {
 
   return (
     <Screen testID="paywall-screen" paddingHorizontal={0} paddingVertical={0} edges={['top']}>
+      <BackgroundFill />
       <HeroWrapper>
         <HeroImage
           resizeMode="cover"
@@ -126,11 +127,10 @@ export function PaywallScreen({ navigation }: Props) {
         />
         <HeroFade
           pointerEvents="none"
-          colors={['rgba(15,42,33,0)', 'rgba(15,42,33,1)']}
-          locations={[0, 1]}
+          colors={['rgba(15,42,33,0)', 'rgba(15,42,33,0.65)', 'rgba(15,42,33,1)']}
+          locations={[0, 0.55, 1]}
         />
       </HeroWrapper>
-      <BottomFill />
       <CloseButton testID="paywall-close" $top={insets.top} onPress={onClose}>
         <CloseText>×</CloseText>
       </CloseButton>
