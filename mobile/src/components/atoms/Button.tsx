@@ -16,7 +16,7 @@ type ButtonProps = PropsWithChildren<{
 
 const Root = styled(Pressable)<{ $variant: ButtonVariant; $fullWidth: boolean }>`
   width: ${({ $fullWidth }: { $fullWidth: boolean }) => ($fullWidth ? '100%' : 'auto')};
-  padding: 12px 16px;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 
@@ -26,8 +26,10 @@ const Root = styled(Pressable)<{ $variant: ButtonVariant; $fullWidth: boolean }>
     height: 56px;
     border-radius: 12px;
     background-color: #28AF6E;
+    padding: 18px 16px;
+    gap: 8px;
   `
-      : ``}
+      : `padding: 12px 16px;`}
 `;
 
 const Label = styled(AppText)<{ $variant: ButtonVariant }>`
