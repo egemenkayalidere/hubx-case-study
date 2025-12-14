@@ -5,6 +5,7 @@ import { GradientText } from '@/components/atoms/GradientText';
 import { layout } from '@/theme/layout';
 
 const ENVELOPE_ICON = require('../../../../assets/home/Group 9058.png');
+const ARROW_ICON = require('../../../../assets/home/arrow.png');
 
 const Wrapper = styled.View`
   padding: 0 ${layout.screenPaddingHorizontal}px;
@@ -24,7 +25,7 @@ const Envelope = styled(Image)`
   left: 20px;
   top: 20.77px;
   width: 32px;
-  height: 23.96668243408203px;
+  height: 32px;
 `;
 
 const TitleSlot = styled.View`
@@ -43,14 +44,12 @@ const SubSlot = styled.View`
   height: 16px;
 `;
 
-const RightIcon = styled.View`
+const Arrow = styled(Image)`
   position: absolute;
   right: 14px;
   top: 21px;
-  width: 22px;
-  height: 22px;
-  border-radius: 11px;
-  background-color: rgba(255, 255, 255, 0.12);
+  width: 12px;
+  height: 12px;
 `;
 
 export function HomePremiumBox() {
@@ -88,7 +87,7 @@ export function HomePremiumBox() {
             Tap to upgrade your account!
           </GradientText>
         </SubSlot>
-        <RightIcon />
+        <Arrow source={ARROW_ICON} resizeMode="contain" />
       </Card>
     </Wrapper>
   );
