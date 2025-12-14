@@ -6,13 +6,13 @@ import styled from 'styled-components/native';
 
 import { Button } from '@/components/atoms/Button';
 import { Screen } from '@/components/atoms/Screen';
-import { useResponsiveScale } from '@/hooks/useResponsiveScale';
-import { layout } from '@/theme/layout';
 import { OnboardingBackground } from '@/features/onboarding/components/OnboardingBackground';
 import { OnboardingDots } from '@/features/onboarding/components/OnboardingDots';
 import { OnboardingSlide1Content } from '@/features/onboarding/components/OnboardingSlide1Content';
 import { OnboardingSlide1Title } from '@/features/onboarding/components/OnboardingSlide1Title';
+import { useResponsiveScale } from '@/hooks/useResponsiveScale';
 import type { RootStackParamList } from '@/navigation/types';
+import { layout } from '@/theme/layout';
 import { scaleFromSafeAreaTop, scalePx } from '@/utils/layout/scale';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Onboarding'>;
@@ -56,8 +56,7 @@ export function OnboardingScreen({ navigation }: Props) {
 
   const buttonBottom = insets.bottom + layout.getStarted.primaryButtonBottomFromSafeAreaBottom;
   const dotsBottom = insets.bottom + 16;
-  // GetStarted ile aynı header offset mantığı: safe-area top + 15px (11 Pro referansı)
-  const slide1TitleTop = Math.max(0, insets.top + layout.getStarted.headerOffsetFromSafeAreaTop);
+  const slide1TitleTop = layout.getStarted.headerOffsetFromSafeAreaTop;
   const slide1TitleLeft = layout.screenPaddingHorizontal;
   const slide1TitleWidth = scalePx(315, scaleW);
   const slide1TitleHeight = scalePx(66, scaleW);
