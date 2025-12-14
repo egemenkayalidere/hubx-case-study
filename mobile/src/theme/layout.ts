@@ -100,7 +100,7 @@ export const layout = {
       listHeight: 200,
     },
     categoryGrid: {
-      topGapFromGetStarted: 16,
+      topGapFromGetStarted: 24,
       cardWidth: 158,
       cardHeight: 152,
       cardRadius: 12,

@@ -26,6 +26,15 @@ const Content = styled.View`
   background-color: #fbfafa;
 `;
 
+const StatusBarFill = styled.View<{ $h: number }>`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: ${({ $h }: { $h: number }) => `${$h}px`};
+  background-color: #ffffff;
+`;
+
 const FALLBACK_GET_STARTED_ITEMS: GetStartedItem[] = [
   {
     id: 'how-to-identify',
@@ -54,6 +63,7 @@ export function HomeScreen(_props: Props) {
 
   return (
     <Screen testID="home-screen" edges={['top']} paddingVertical={0} paddingHorizontal={0}>
+      <StatusBarFill $h={insets.top} pointerEvents="none" />
       <Content style={{ paddingBottom: layout.tabBar.baseHeight + insets.bottom }}>
         <HomeHeader />
         <HomePremiumBox />

@@ -19,7 +19,7 @@ export function AppRoot() {
       <QueryClientProvider client={queryClient}>
         <NavigationContainer>
           <RootNavigator />
-          <StatusBar style="auto" />
+          <StatusBar style="dark" backgroundColor="transparent" translucent />
         </NavigationContainer>
       </QueryClientProvider>
     </SafeAreaProvider>
