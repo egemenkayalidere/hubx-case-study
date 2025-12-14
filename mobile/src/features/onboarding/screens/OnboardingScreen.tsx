@@ -10,6 +10,7 @@ import { OnboardingBackground } from '@/features/onboarding/components/Onboardin
 import { OnboardingDots } from '@/features/onboarding/components/OnboardingDots';
 import { OnboardingSlide1Content } from '@/features/onboarding/components/OnboardingSlide1Content';
 import { OnboardingSlide1Title } from '@/features/onboarding/components/OnboardingSlide1Title';
+import { OnboardingSlide2Layers } from '@/features/onboarding/components/OnboardingSlide2Layers';
 import { OnboardingSlide2Title } from '@/features/onboarding/components/OnboardingSlide2Title';
 import { useResponsiveScale } from '@/hooks/useResponsiveScale';
 import type { RootStackParamList } from '@/navigation/types';
@@ -64,6 +65,47 @@ export function OnboardingScreen({ navigation }: Props) {
   const slide2TitleLeft = layout.onboarding.slide2.titleLeft;
   const slide2TitleWidth = scalePx(layout.onboarding.slide2.titleWidth, scaleW);
   const slide2TitleHeight = scalePx(layout.onboarding.slide2.titleHeight, scaleW);
+
+  const slide2Artwork = {
+    top: scalePx(
+      layout.onboarding.slide2.artwork.topFromFrame - layout.design.baseSafeAreaTop,
+      mediaScale,
+    ),
+    left: scalePx(layout.onboarding.slide2.artwork.left, mediaScale),
+    width: scalePx(layout.onboarding.slide2.artwork.width, mediaScale),
+    height: scalePx(layout.onboarding.slide2.artwork.height, mediaScale),
+    rotationDeg: layout.onboarding.slide2.artwork.rotationDeg,
+  };
+  const slide2Phone = {
+    top: scalePx(
+      layout.onboarding.slide2.phone.topFromFrame - layout.design.baseSafeAreaTop,
+      mediaScale,
+    ),
+    left: scalePx(layout.onboarding.slide2.phone.left, mediaScale),
+    width: scalePx(layout.onboarding.slide2.phone.width, mediaScale),
+    height: scalePx(layout.onboarding.slide2.phone.height, mediaScale),
+    rotationDeg: layout.onboarding.slide2.phone.rotationDeg,
+  };
+  const slide2Overlay = {
+    top: scalePx(
+      layout.onboarding.slide2.overlay.topFromFrame - layout.design.baseSafeAreaTop,
+      mediaScale,
+    ),
+    left: 0,
+    width: scalePx(layout.onboarding.slide2.overlay.width, mediaScale),
+    height: scalePx(layout.onboarding.slide2.overlay.height, mediaScale),
+    rotationDeg: layout.onboarding.slide2.overlay.rotationDeg,
+  };
+  const slide2Object = {
+    top: scalePx(
+      layout.onboarding.slide2.object.topFromFrame - layout.design.baseSafeAreaTop,
+      mediaScale,
+    ),
+    left: scalePx(layout.onboarding.slide2.object.left, mediaScale),
+    width: scalePx(layout.onboarding.slide2.object.width, mediaScale),
+    height: scalePx(layout.onboarding.slide2.object.height, mediaScale),
+    rotationDeg: layout.onboarding.slide2.object.rotationDeg,
+  };
 
   const slide1ContentTop = scalePx(
     layout.onboarding.slide1.contentTopFromFrame -
@@ -131,6 +173,15 @@ export function OnboardingScreen({ navigation }: Props) {
                   left={slide2TitleLeft}
                   width={slide2TitleWidth}
                   height={slide2TitleHeight}
+                />
+              ) : null}
+              {item.key === '2' ? (
+                <OnboardingSlide2Layers
+                  artwork={slide2Artwork}
+                  phone={slide2Phone}
+                  overlay={slide2Overlay}
+                  object={slide2Object}
+                  deviceWidth={width}
                 />
               ) : null}
             </SlidePage>
