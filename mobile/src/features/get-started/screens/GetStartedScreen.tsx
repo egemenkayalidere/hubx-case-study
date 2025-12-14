@@ -36,7 +36,7 @@ const Legal = styled.View<{ $bottom: number }>`
 `;
 
 export function GetStartedScreen({ navigation }: Props) {
-  const { deviceWidth, scale } = useResponsiveScale(layout.getStarted.baseWidth);
+  const { deviceWidth, scale } = useResponsiveScale(layout.design.baseWidth);
   const insets = useSafeAreaInsets();
 
   const legalBottom = insets.bottom + layout.getStarted.legalBottomFromSafeAreaBottom;
@@ -44,7 +44,7 @@ export function GetStartedScreen({ navigation }: Props) {
   const heroTop = scaleFromSafeAreaTop({
     frameTop: layout.getStarted.heroTopFromFrame,
     insetsTop: insets.top,
-    baseSafeAreaTop: layout.getStarted.baseSafeAreaTop,
+    baseSafeAreaTop: layout.design.baseSafeAreaTop,
     scale,
   });
   const heroHeight = scalePx(layout.getStarted.heroHeight, scale);
