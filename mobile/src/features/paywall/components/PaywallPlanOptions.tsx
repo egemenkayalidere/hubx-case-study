@@ -66,9 +66,13 @@ const Texts = styled.View`
 `;
 
 const Title = styled(AppText)`
-  font-family: 'Rubik_600SemiBold';
-  font-size: 14px;
-  line-height: 18px;
+  width: 61px;
+  height: 19px;
+  font-family: 'Rubik_500Medium';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0px;
   color: #ffffff;
 `;
 
