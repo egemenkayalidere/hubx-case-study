@@ -1,5 +1,7 @@
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { useCategoriesQuery, useQuestionsQuery } from '@/api/queries';
 import { Screen } from '@/components/atoms/Screen';
@@ -13,6 +15,7 @@ import {
 } from '@/features/home/components/HomeGetStartedSection';
 import { HomeHeader } from '@/features/home/components/HomeHeader';
 import { HomePremiumBox } from '@/features/home/components/HomePremiumBox';
+import type { RootStackParamList } from '@/navigation/types';
 import { layout } from '@/theme/layout';
 
 const Content = styled.ScrollView`
@@ -40,6 +43,7 @@ const FALLBACK_GET_STARTED_ITEMS: GetStartedItem[] = [
 
 export function HomeScreen() {
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const categoriesQuery = useCategoriesQuery();
   const questionsQuery = useQuestionsQuery();
 
@@ -69,8 +73,19 @@ export function HomeScreen() {
       >
         <HomeHeader />
         <HomePremiumBox />
-        <HomeGetStartedSection title="Get Started" items={getStartedItems} />
-        <HomeCategoryGridSection items={categoryItems} />
+        <HomeGetStartedSection
+          title="Get Started"
+          items={getStartedItems}
+          onPressItem={(item) =>
+            navigation.navigate('QuestionDetail', { id: item.id, title: item.title })
+          }
+        />
+        <HomeCategoryGridSection
+          items={categoryItems}
+          onPressItem={(item) =>
+            navigation.navigate('CategoryDetail', { id: item.id, title: item.title })
+          }
+        />
       </Content>
     </Screen>
   );
