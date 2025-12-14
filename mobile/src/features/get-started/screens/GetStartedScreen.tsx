@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 
 import { Button } from '@/components/atoms/Button';
 import { Screen } from '@/components/atoms/Screen';
+import { GetStartedBackground } from '@/features/get-started/components/GetStartedBackground';
 import { GetStartedHero } from '@/features/get-started/components/GetStartedHero';
 import { GetStartedLegal } from '@/features/get-started/components/GetStartedLegal';
 import { GetStartedTexts } from '@/features/get-started/components/GetStartedTexts';
@@ -49,6 +50,7 @@ export function GetStartedScreen({ navigation }: Props) {
 
   return (
     <Screen testID="get-started-screen" paddingHorizontal={0} paddingVertical={0} edges={['top']}>
+      <GetStartedBackground />
       <GetStartedHero top={heroTop} width={deviceWidth} height={heroHeight} />
       <Content>
         <GetStartedTexts />
