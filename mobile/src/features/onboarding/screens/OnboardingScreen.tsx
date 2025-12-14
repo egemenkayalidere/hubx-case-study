@@ -56,12 +56,8 @@ export function OnboardingScreen({ navigation }: Props) {
 
   const buttonBottom = insets.bottom + layout.getStarted.primaryButtonBottomFromSafeAreaBottom;
   const dotsBottom = insets.bottom + 16;
-  const slide1TitleTop = scaleFromSafeAreaTop({
-    frameTop: 59,
-    insetsTop: insets.top,
-    baseSafeAreaTop: layout.design.baseSafeAreaTop,
-    scale: scaleW,
-  });
+  // GetStarted ile aynı header offset mantığı: safe-area top + 15px (11 Pro referansı)
+  const slide1TitleTop = Math.max(0, insets.top + layout.getStarted.headerOffsetFromSafeAreaTop);
   const slide1TitleLeft = layout.screenPaddingHorizontal;
   const slide1TitleWidth = scalePx(315, scaleW);
   const slide1TitleHeight = scalePx(66, scaleW);
