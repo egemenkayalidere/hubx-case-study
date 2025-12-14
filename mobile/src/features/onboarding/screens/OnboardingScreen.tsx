@@ -27,8 +27,6 @@ const SlidesWrapper = styled.View`
 
 const SlidePage = styled.View<{ $width: number }>`
   width: ${({ $width }: { $width: number }) => $width}px;
-  padding-left: ${layout.screenPaddingHorizontal}px;
-  padding-right: ${layout.screenPaddingHorizontal}px;
 `;
 
 const BottomButton = styled.View<{ $bottom: number }>`
