@@ -6,6 +6,10 @@ import styled from 'styled-components/native';
 import { Screen } from '@/components/atoms/Screen';
 import { BottomTabBar, type TabKey } from '@/components/organisms/BottomTabBar';
 import {
+  HomeCategoryGridSection,
+  type HomeCategoryItem,
+} from '@/features/home/components/HomeCategoryGridSection';
+import {
   HomeGetStartedSection,
   type GetStartedItem,
 } from '@/features/home/components/HomeGetStartedSection';
@@ -26,6 +30,13 @@ const GET_STARTED_ITEMS: GetStartedItem[] = [
   { id: 'species', title: 'Species and are the differ' },
 ];
 
+const CATEGORY_ITEMS: HomeCategoryItem[] = [
+  { id: 'edible', title: 'Edible\nPlants' },
+  { id: 'ferns', title: 'Ferns' },
+  { id: 'cacti', title: 'Cacti and\nSucculents' },
+  { id: 'palms', title: 'Palms' },
+];
+
 export function HomeScreen(_props: Props) {
   const [activeTab, setActiveTab] = useState<TabKey>('home');
   const insets = useSafeAreaInsets();
@@ -36,6 +47,7 @@ export function HomeScreen(_props: Props) {
         <HomeHeader />
         <HomePremiumBox />
         <HomeGetStartedSection title="Get Started" items={GET_STARTED_ITEMS} />
+        <HomeCategoryGridSection items={CATEGORY_ITEMS} />
       </Content>
       <BottomTabBar activeTab={activeTab} onPressTab={setActiveTab} />
     </Screen>

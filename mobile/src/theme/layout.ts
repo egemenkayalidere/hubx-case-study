@@ -99,5 +99,16 @@ export const layout = {
       topGapFromPremiumBox: 24,
       listHeight: 200,
     },
+    categoryGrid: {
+      topGapFromGetStarted: 16,
+      cardWidth: 158,
+      cardHeight: 152,
+      cardRadius: 12,
+      cardBg: '#F4F6F6',
+      cardBorderWidth: 0.5,
+      cardBorderColor: 'rgba(41,187,137,0.18)',
+      columnGap: 11,
+      rowGap: 12,
+    },
   },
 } as const;
