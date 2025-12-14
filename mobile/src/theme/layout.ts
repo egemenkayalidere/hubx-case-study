@@ -19,8 +19,8 @@ export const layout = {
     },
     slide2: {
       titleLeft: 24,
-      titleWidth: 315,
-      titleHeight: 66,
+      titleWidth: 277,
+      titleHeight: 49,
     },
   },
   getStarted: {
