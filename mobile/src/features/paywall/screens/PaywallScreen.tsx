@@ -169,6 +169,7 @@ export function PaywallScreen({ navigation }: Props) {
             marginTop: 8,
             width: '100%',
             height: 24,
+            paddingHorizontal: 12,
             fontSize: 9,
             lineHeight: 12,
             color: 'rgba(255,255,255,0.52)',
